@@ -179,7 +179,7 @@ export const projects: Project[] = [
       "Meditation focused site built to design specifications with SquareSpace for client convenience. Designed and developed the full site layout, imagery, and content structure to match the client's vision for a calming, accessible online presence.",
     role: "Designer & Developer",
     contributions: ["UI Design", "Site Development", "Client Collaboration"],
-    tech: ["HTML/CSS", "JavaScript", "Photoshop", "SquareSpace"],
+    tech: ["HTML/CSS", "JavaScript", "Adobe Suite", "SquareSpace"],
     images: ["/projects/nextgen-purusha/1.png"],
     links: [
       {
@@ -197,7 +197,7 @@ export const projects: Project[] = [
       "Local Pewter artist site designed and created with SquareSpace for client convenience. Handled end-to-end design and development to showcase the artist's pewter works with an emphasis on visual presentation and easy content management.",
     role: "Designer & Developer",
     contributions: ["UI Design", "Site Development", "Content Strategy"],
-    tech: ["HTML/CSS", "Photoshop", "SquareSpace"],
+    tech: ["HTML/CSS", "Adobe Suite", "SquareSpace"],
     images: ["/projects/walker-pewter/Walker Pewter 2021 - 1.png", "/projects/walker-pewter/Walker Pewter 2021 - 2.png"],
     links: [],
   },
@@ -209,7 +209,7 @@ export const projects: Project[] = [
       "Requested homepage design mockup for a skincare site. Created a polished visual concept for the brand's homepage, focusing on clean layout, product imagery, and brand identity.",
     role: "Designer",
     contributions: ["Visual Design", "Mockup Creation", "Brand Exploration"],
-    tech: ["Photoshop", "Illustrator"],
+    tech: ["Adobe Suite"],
     images: ["/projects/phenic-skincare/Phenic-Home-Mockup-v1.jpg"],
     links: [],
   },
