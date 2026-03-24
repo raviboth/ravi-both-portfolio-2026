@@ -15,16 +15,10 @@
 
   // Subscribe to store
   const unsubscribe = activeProject.subscribe((value) => {
-    project = value;
-  });
-
-  // React to project changes
-  $effect(() => {
-    const wasOpen = isOpen;
-    isOpen = project !== null;
-
-    if (isOpen && !wasOpen) {
-      // Opening
+    if (value !== null) {
+      // Opening: set content first, then animate open
+      project = value;
+      isOpen = true;
       currentIndex = 0;
       imageLoaded = false;
       triggerElement = document.activeElement as HTMLElement | null;
@@ -32,11 +26,15 @@
       tick().then(() => {
         closeBtnEl?.focus();
       });
-    } else if (!isOpen && wasOpen) {
-      // Closing
+    } else if (isOpen) {
+      // Closing: animate out first, then clear content
+      isOpen = false;
       document.body.style.overflow = '';
       triggerElement?.focus();
       triggerElement = null;
+      setTimeout(() => {
+        project = null;
+      }, 400);
     }
   });
 
@@ -163,6 +161,7 @@
     class="modal-container"
     class:full-width={!hasImages}
     bind:this={modalContainerEl}
+    role="document"
     onclick={(e) => e.stopPropagation()}
     onkeydown={() => {}}
   >
