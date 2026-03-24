@@ -20,17 +20,19 @@ export const projects: Project[] = [
     id: "tm-org",
     title: "TM.org Course Platform",
     shortDesc:
-      "Course booking platform connecting students with meditation teachers across US and UK, architected and built from 0-to-1.",
+      "Full-stack course booking platform built from 0-to-1, connecting students with meditation teachers across the US and UK with AWS microservices, CI/CD, and a CMS-driven template system.",
     longDesc:
-      "Course booking platform connecting students with meditation teachers across the US and UK. As one of three key developers, architected and developed the full-stack application from scratch, replacing legacy sites with a modern, unified platform. Features include course search and browsing, booking flows, teacher profiles, and multi-region support (en-us and en-gb), designed to scale to additional countries.",
+      "Course booking platform connecting students with meditation teachers across the US and UK. As one of three key developers, architected and developed the full-stack application from scratch, replacing legacy sites with a modern, unified platform. Built AWS microservices with Node.js and GraphQL for RESTful APIs and DynamoDB integrations handling high-traffic user data. Automated CI/CD pipelines with CircleCI and Docker, and implemented end-to-end and unit testing with Cypress and Jest alongside Sentry error tracking. Led the design system implementation using Figma, Tailwind, and Storybook, creating a reusable component library for UI consistency across products. Architected a flexible template system with Prismic CMS enabling non-technical teams to publish content autonomously. Multi-region support (en-us and en-gb), designed to scale to additional countries.",
     role: "Full-Stack Developer & Architect",
     contributions: [
-      "Frontend Architecture",
-      "Booking & Search UX",
-      "Multi-Region Support",
-      "Full-Stack Development (Frontend, Backend, CMS, Integrations)",
+      "Frontend Architecture & Design System",
+      "AWS Microservices & GraphQL APIs",
+      "CI/CD Pipelines (CircleCI, Docker)",
+      "CMS Template System (Prismic)",
+      "Testing & Error Tracking (Cypress, Jest, Sentry)",
+      "Mentorship & Code Reviews",
     ],
-    tech: ["React", "Next.js", "TypeScript", "Node.js"],
+    tech: ["React", "Next.js", "TypeScript", "Node.js", "AWS", "GraphQL", "DynamoDB", "Docker"],
     images: [
       "/projects/tm-org/1.png",
       "/projects/tm-org/2.png",
