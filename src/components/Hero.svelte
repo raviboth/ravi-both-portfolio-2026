@@ -161,7 +161,7 @@
   }
 
   .hero-content h1 .accent {
-    color: #c47d2e;
+    color: var(--color-accent-dark);
     display: inline-block;
     transform: translateY(0);
     transition: transform 0.6s ease-in-out;
