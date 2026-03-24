@@ -73,6 +73,32 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "bit",
+    title: "Brain Innovation Technologies",
+    shortDesc:
+      "Sales funnel redesign for a B2B wellness site targeting executives, HR, and educational organisations — replacing an information-heavy layout with a conversion-focused architecture.",
+    longDesc:
+      "Proposed and built a complete sales funnel redesign for Brain Innovation Technologies, a B2B site targeting executives, HR departments, and schools. The original site lacked clear calls to action, buried key endorsements, and had no conversion architecture. The redesign introduces a problem-first narrative that leads with pain points before presenting the solution, prominently features trust signals including an AHA endorsement above the fold, and provides tailored messaging for distinct audience segments. A dedicated research page with filtering, an education page with video lightbox, strategically placed contact modals, curated testimonials, and full SEO foundations (sitemap, structured data, OG tags, llms.txt) complete the conversion-optimised experience.",
+    role: "Developer & Conversion Strategist",
+    contributions: [
+      "Sales Funnel Architecture",
+      "Audience-Segmented Messaging",
+      "Research & Education Pages",
+      "SEO & Structured Data",
+      "Responsive Design",
+    ],
+    tech: ["Astro", "TypeScript", "Tailwind CSS"],
+    images: [
+      "/projects/bit/1.png",
+      "/projects/bit/2.png",
+      "/projects/bit/3.png",
+      "/projects/bit/4.png",
+      "/projects/bit/5.png",
+      "/projects/bit/6.png",
+    ],
+    links: [],
+  },
+  {
     id: "baansearch",
     title: "BaanSearch",
     shortDesc:
