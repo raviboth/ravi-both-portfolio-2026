@@ -179,7 +179,8 @@ a {
    ============================================================================ */
 
 .card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   background: var(--color-card-bg);
   border: none;
