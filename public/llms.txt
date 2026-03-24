@@ -1,0 +1,30 @@
+# Ravi Both — Portfolio
+
+> Full-Stack Engineer & Tech Consultant based in Peterborough, NH.
+
+## About
+
+Ravi Both is a full-stack software engineer with an MBA in Business Process Improvement. He builds scalable web applications and provides technical consulting for growing businesses. Fluent in English and Dutch, proficient in German.
+
+## Skills
+
+- Frontend: React, Next.js, Svelte, Astro, TypeScript, Tailwind CSS
+- Backend: Node.js, AWS, RESTful APIs, DynamoDB
+- Mobile: React Native (iOS & Android)
+- Tools: Docker, CircleCI, Git, Figma, Storybook, Prismic CMS
+- Testing: Cypress, Jest, Vitest, Sentry
+
+## Selected Projects
+
+- TM.org Course Platform: Full-stack booking platform connecting students with meditation teachers across the US and UK. Built from scratch with React, Next.js, TypeScript, Node.js, and AWS.
+- TM App: React Native mobile app for Android and iOS, supporting meditation practice with guided sessions and event discovery.
+- Brain Innovation Technologies: Sales funnel redesign for a B2B wellness site targeting executives, HR, and educational organisations. Built with Astro, Svelte, and Tailwind CSS.
+- BaanSearch: Job search link aggregator generating pre-built search URLs to 60+ job boards with a single set of filters.
+- Claude Code Usage Monitor: Desktop utility tracking Claude Code usage limits with system tray integration, dashboard, and alerts.
+
+## Contact
+
+- Email: ravi@raviboth.com
+- GitHub: https://github.com/raviboth
+- LinkedIn: https://linkedin.com/in/raviboth
+- Website: https://raviboth.com

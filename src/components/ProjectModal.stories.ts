@@ -20,7 +20,7 @@ const defaultProject = {
     "Meditation focused site built to design specifications with SquareSpace for client convenience. Designed and developed the full site layout, imagery, and content structure to match the client's vision for a calming, accessible online presence.",
   contributions: ['UI Design', 'Site Development', 'Client Collaboration'],
   tech: ['HTML/CSS', 'JavaScript', 'Photoshop', 'SquareSpace'],
-  images: ['/projects/nextgen-purusha/1.png'],
+  images: ['/projects/nextgen-purusha/1.webp'],
   liveUrl: 'https://www.nextgenpurusha.com',
   githubUrl: 'https://github.com/example/nextgen-purusha',
 };
@@ -40,10 +40,10 @@ const multiImageProject = {
   ],
   tech: ['HTML/CSS', 'SASS', 'React', 'Figma', 'Git', 'APIs', 'Photoshop', 'Illustrator'],
   images: [
-    '/projects/raviboth-com/1.png',
-    '/projects/nextgen-purusha/1.png',
-    '/projects/walker-pewter/1.png',
-    '/projects/drum-machine/1.png',
+    '/projects/raviboth-com/1.webp',
+    '/projects/nextgen-purusha/1.webp',
+    '/projects/walker-pewter/1.webp',
+    '/projects/drum-machine/1.webp',
   ],
   liveUrl: 'https://raviboth.com',
   githubUrl: 'https://github.com/raviboth/raviboth-com',

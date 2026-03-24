@@ -34,13 +34,13 @@ export const projects: Project[] = [
     ],
     tech: ["React", "Next.js", "TypeScript", "Tailwind CSS", "AWS"],
     images: [
-      "/projects/tm-org/1.png",
-      "/projects/tm-org/2.png",
-      "/projects/tm-org/3.png",
-      "/projects/tm-org/4.png",
-      "/projects/tm-org/5.png",
-      "/projects/tm-org/6.png",
-      "/projects/tm-org/7.png",
+      "/projects/tm-org/1.webp",
+      "/projects/tm-org/2.webp",
+      "/projects/tm-org/3.webp",
+      "/projects/tm-org/4.webp",
+      "/projects/tm-org/5.webp",
+      "/projects/tm-org/6.webp",
+      "/projects/tm-org/7.webp",
     ],
     links: [
       {
@@ -64,8 +64,8 @@ export const projects: Project[] = [
     ],
     tech: ["React Native", "TypeScript", "Node.js", "iOS", "Android"],
     images: [
-      "/projects/tm-app/Screenshot1.png",
-      "/projects/tm-app/Screenshot2.png",
+      "/projects/tm-app/Screenshot1.webp",
+      "/projects/tm-app/Screenshot2.webp",
     ],
     links: [
       {
@@ -91,12 +91,12 @@ export const projects: Project[] = [
     ],
     tech: ["Astro", "Svelte", "TypeScript", "Tailwind CSS"],
     images: [
-      "/projects/bit/1.png",
-      "/projects/bit/2.png",
-      "/projects/bit/3.png",
-      "/projects/bit/4.png",
-      "/projects/bit/5.png",
-      "/projects/bit/6.png",
+      "/projects/bit/1.webp",
+      "/projects/bit/2.webp",
+      "/projects/bit/3.webp",
+      "/projects/bit/4.webp",
+      "/projects/bit/5.webp",
+      "/projects/bit/6.webp",
     ],
     links: [],
   },
@@ -116,9 +116,9 @@ export const projects: Project[] = [
     ],
     tech: ["TypeScript", "esbuild", "Vitest", "Docker"],
     images: [
-      "/projects/baansearch/1.png",
-      "/projects/baansearch/2.png",
-      "/projects/baansearch/3.png",
+      "/projects/baansearch/1.webp",
+      "/projects/baansearch/2.webp",
+      "/projects/baansearch/3.webp",
     ],
     links: [
       {
@@ -147,8 +147,8 @@ export const projects: Project[] = [
     ],
     tech: ["Python", "PyQt6", "SQLite", "Pillow"],
     images: [
-      "/projects/ccusage/dashboard.png",
-      "/projects/ccusage/tray.png",
+      "/projects/ccusage/dashboard.webp",
+      "/projects/ccusage/tray.webp",
     ],
     links: [
       {
@@ -180,7 +180,7 @@ export const projects: Project[] = [
     role: "Designer & Developer",
     contributions: ["UI Design", "Site Development", "Client Collaboration"],
     tech: ["HTML/CSS", "JavaScript", "Adobe Suite", "SquareSpace"],
-    images: ["/projects/nextgen-purusha/1.png"],
+    images: ["/projects/nextgen-purusha/1.webp"],
     links: [
       {
         label: "Live Site",
@@ -198,7 +198,7 @@ export const projects: Project[] = [
     role: "Designer & Developer",
     contributions: ["UI Design", "Site Development", "Content Strategy"],
     tech: ["HTML/CSS", "Adobe Suite", "SquareSpace"],
-    images: ["/projects/walker-pewter/Walker Pewter 2021 - 1.png", "/projects/walker-pewter/Walker Pewter 2021 - 2.png"],
+    images: ["/projects/walker-pewter/Walker Pewter 2021 - 1.webp", "/projects/walker-pewter/Walker Pewter 2021 - 2.webp"],
     links: [],
   },
   {
@@ -210,7 +210,7 @@ export const projects: Project[] = [
     role: "Designer",
     contributions: ["Visual Design", "Mockup Creation", "Brand Exploration"],
     tech: ["Adobe Suite"],
-    images: ["/projects/phenic-skincare/Phenic-Home-Mockup-v1.jpg"],
+    images: ["/projects/phenic-skincare/Phenic-Home-Mockup-v1.webp"],
     links: [],
   },
 ];
