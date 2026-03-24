@@ -124,7 +124,7 @@
   }
 
   .accent {
-    color: #c47d2e;
+    color: var(--color-accent-dark);
     font-weight: 600;
   }
 

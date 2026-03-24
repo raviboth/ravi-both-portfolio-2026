@@ -183,7 +183,7 @@
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 1.125rem;
     font-weight: 700;
-    color: var(--color-primary);
+    color: var(--color-primary-dark);
     text-decoration: none;
     position: relative;
     transition: color var(--transition-base);
@@ -196,12 +196,12 @@
     left: 0;
     width: 0;
     height: 2px;
-    background-color: var(--color-primary-dark);
+    background-color: var(--color-primary);
     transition: width var(--transition-base);
   }
 
   .nav-links a:hover {
-    color: var(--color-primary-dark);
+    color: var(--color-primary);
   }
 
   .nav-links a:hover::after {
