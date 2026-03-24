@@ -32,7 +32,7 @@ export const projects: Project[] = [
       "CI/CD & Testing Infrastructure",
       "Multi-Region Support",
     ],
-    tech: ["React", "Next.js", "TypeScript", "Node.js", "AWS", "RESTful APIs"],
+    tech: ["React", "Next.js", "TypeScript", "Node.js", "AWS"],
     images: [
       "/projects/tm-org/1.png",
       "/projects/tm-org/2.png",
@@ -89,7 +89,7 @@ export const projects: Project[] = [
       "SEO & Structured Data",
       "Responsive Design",
     ],
-    tech: ["Astro", "TypeScript", "Tailwind CSS"],
+    tech: ["Astro", "Svelte", "TypeScript", "Tailwind CSS"],
     images: [
       "/projects/bit/1.png",
       "/projects/bit/2.png",
