@@ -22,7 +22,7 @@ export const projects: Project[] = [
     shortDesc:
       "Course booking platform built from 0-to-1, connecting students with meditation teachers across the US and UK. Replaced legacy sites with a modern, scalable platform.",
     longDesc:
-      "Course booking platform connecting students with meditation teachers across the US and UK. As one of three key developers, architected and built the full-stack application from scratch, replacing legacy sites with a modern, unified platform. Features include course search and browsing, booking flows, teacher profiles, and multi-region support designed to scale to additional countries. Built the backend API layer on AWS with GraphQL and DynamoDB, set up CI/CD pipelines, led the design system and component library, and architected a CMS template system enabling non-technical teams to publish content autonomously.",
+      "Course booking platform connecting students with meditation teachers across the US and UK. As one of three key developers, architected and built the full-stack application from scratch, replacing legacy sites with a modern, unified platform. Features include course search and browsing, booking flows, teacher profiles, and multi-region support designed to scale to additional countries. Built the backend API layer on AWS with RESTful APIs and DynamoDB, set up CI/CD pipelines, led the design system and component library, and architected a CMS template system enabling non-technical teams to publish content autonomously.",
     role: "Full-Stack Developer & Architect",
     contributions: [
       "Full-Stack Architecture (Frontend & Backend)",
@@ -32,7 +32,7 @@ export const projects: Project[] = [
       "CI/CD & Testing Infrastructure",
       "Multi-Region Support",
     ],
-    tech: ["React", "Next.js", "TypeScript", "Node.js", "AWS", "GraphQL"],
+    tech: ["React", "Next.js", "TypeScript", "Node.js", "AWS", "RESTful APIs"],
     images: [
       "/projects/tm-org/1.png",
       "/projects/tm-org/2.png",
