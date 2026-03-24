@@ -161,12 +161,12 @@ export const projects: Project[] = [
     id: "sutherland",
     title: "Sutherland",
     shortDesc:
-      "Business and appointment card generator site for hospital that creates orders and bills as well as creates PDFs of the cards.",
+      "Internal tool for a hospital to design custom business and appointment cards, manage orders, and generate print-ready PDFs.",
     longDesc:
-      "Business and appointment card generator site for hospital that creates orders and bills as well as creates PDFs of the cards. Collaborative effort with two other developers. Contribution focused on setup and layout. Private Internal dashboard and GitHub repo.",
+      "Internal dashboard for a hospital that streamlined the creation of custom business and appointment cards. Staff can design cards, place orders, and generate print-ready PDFs — replacing a manual process with an efficient self-service workflow. Includes an ordering and billing system for tracking card requests across departments.",
     role: "Developer",
-    contributions: ["Project Setup", "Layout Development", "Team Collaboration"],
-    tech: ["HTML/CSS", "jQuery", "Wordpress", "Git", "PHP", "Photoshop"],
+    contributions: ["Custom Card Designer", "Ordering & Billing System", "PDF Generation"],
+    tech: ["PHP", "WordPress", "jQuery", "HTML/CSS"],
     images: [],
     links: [],
   },
