@@ -3,6 +3,7 @@
   import { tick } from 'svelte';
   import { smoothScroll } from '../lib/actions/smoothScroll';
   import IconPillButton from './IconPillButton.svelte';
+  import { CONTACT } from '../data/constants';
 
   let scrolled = $state(false);
   let menuOpen = $state(false);
@@ -73,13 +74,9 @@
     </div>
 
     <!-- Desktop email button -->
-    <a href="mailto:ravi@raviboth.com" class="email-button">
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-        <path d="M2 4h14a2 2 0 012 2v8a2 2 0 01-2 2H2a2 2 0 01-2-2V6a2 2 0 012-2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="m2 6 7 5 7-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-      <span>ravi@raviboth.com</span>
-    </a>
+    <div class="email-button-wrapper">
+      <IconPillButton href="mailto:{CONTACT.email}" label={CONTACT.email} icon="email" />
+    </div>
 
     <!-- Mobile hamburger button -->
     <button
@@ -110,7 +107,8 @@
   class:open={menuOpen}
   bind:this={overlayEl}
   role="dialog"
-  aria-modal={menuOpen}
+  aria-modal="true"
+  aria-hidden={!menuOpen}
   aria-label="Navigation menu"
   onkeydown={handleOverlayKeydown}
   tabindex="-1"
@@ -134,10 +132,10 @@
   </div>
 
   <div class="social-pills">
-    <IconPillButton href="mailto:ravi@raviboth.com" icon="email" label="Email" />
-    <IconPillButton href="https://github.com/raviboth" icon="github" label="GitHub" external />
-    <IconPillButton href="https://linkedin.com/in/raviboth" icon="linkedin" label="LinkedIn" external />
-    <IconPillButton href="/Both, Ravi - resume.pdf" icon="resume" label="Resume" external />
+    <IconPillButton href="mailto:{CONTACT.email}" icon="email" label="Email" />
+    <IconPillButton href={CONTACT.github} icon="github" label="GitHub" external />
+    <IconPillButton href={CONTACT.linkedin} icon="linkedin" label="LinkedIn" external />
+    <IconPillButton href={CONTACT.resume} icon="resume" label="Resume" external />
   </div>
 </div>
 
@@ -164,7 +162,7 @@
   }
 
   .logo {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--font-heading);
     font-size: 1.4rem;
     font-weight: 700;
     color: var(--color-text);
@@ -180,7 +178,7 @@
   }
 
   .nav-links a {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--font-heading);
     font-size: 1.125rem;
     font-weight: 700;
     color: var(--color-primary-dark);
@@ -208,28 +206,8 @@
     width: 100%;
   }
 
-  .email-button {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
-    border-radius: 24px;
-    background-color: var(--color-primary-dark);
-    color: #ffffff;
-    font-family: 'DM Sans', system-ui, sans-serif;
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: background-color var(--transition-fast), transform var(--transition-fast);
+  .email-button-wrapper {
     flex-shrink: 0;
-  }
-
-  .email-button:hover {
-    background-color: #3a5c40;
-    transform: scale(1.03);
-  }
-
-  .email-button:active {
-    transform: scale(0.97);
   }
 
   /* Hamburger - hidden on desktop */
@@ -285,7 +263,7 @@
   }
 
   .overlay-links a {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--font-heading);
     font-size: 2rem;
     font-weight: 700;
     color: var(--color-text);
@@ -314,7 +292,7 @@
       display: none;
     }
 
-    .email-button {
+    .email-button-wrapper {
       display: none;
     }
 

@@ -1,5 +1,6 @@
 <script lang="ts">
   import IconPillButton from './IconPillButton.svelte';
+  import { CONTACT } from '../data/constants';
 </script>
 
 <section id="contact" class="contact" aria-labelledby="contact-heading" data-reveal>
@@ -11,15 +12,15 @@
       Let's talk about what you're building.
     </p>
     <div class="contact-buttons">
-      <IconPillButton href="mailto:ravi@raviboth.com" icon="email" label="Email" />
+      <IconPillButton href="mailto:{CONTACT.email}" icon="email" label="Email" />
       <IconPillButton
-        href="https://linkedin.com/in/raviboth"
+        href={CONTACT.linkedin}
         icon="linkedin"
         label="LinkedIn"
         external={true}
       />
       <IconPillButton
-        href="https://github.com/raviboth"
+        href={CONTACT.github}
         icon="github"
         label="GitHub"
         external={true}
@@ -53,7 +54,7 @@
 
   .contact-heading {
     font-family: var(--font-heading);
-    font-size: 2.4rem;
+    font-size: 2.25rem;
     font-weight: 700;
     color: var(--color-text);
     margin-bottom: 20px;
@@ -84,7 +85,7 @@
   /* Mobile */
   @media (max-width: 767px) {
     .contact-heading {
-      font-size: 1.8rem;
+      font-size: 1.75rem;
     }
 
     .contact-buttons {

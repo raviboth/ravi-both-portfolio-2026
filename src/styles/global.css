@@ -230,8 +230,8 @@ a {
 }
 
 .card-initials {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 48px;
+  font-family: var(--font-heading);
+  font-size: 3rem;
   font-weight: 700;
   color: rgba(255, 255, 255, 0.7);
   line-height: 1;
@@ -243,16 +243,16 @@ a {
 }
 
 .card-title {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 18px;
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
   font-weight: 700;
   color: var(--color-text);
   margin-bottom: 8px;
 }
 
 .card-desc {
-  font-family: 'DM Sans', system-ui, sans-serif;
-  font-size: 14px;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
   line-height: 1.5;
   color: var(--color-text-secondary);
   margin-bottom: 16px;
@@ -269,8 +269,8 @@ a {
   background-color: var(--color-tag-on-white);
   border-radius: var(--radius-pill);
   padding: 4px 12px;
-  font-family: 'DM Sans', system-ui, sans-serif;
-  font-size: 12px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
   font-weight: 500;
   color: var(--color-text);
 }

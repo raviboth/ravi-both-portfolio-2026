@@ -1,14 +1,20 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
+  import { onMount } from "svelte";
 
   let visible = $state(false);
   let reducedMotion = $state(false);
 
-  $effect(() => {
-    reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+  onMount(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    reducedMotion = mq.matches;
     visible = true;
+
+    function onChange(e: MediaQueryListEvent) {
+      reducedMotion = e.matches;
+    }
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
   });
 
   const leftTransition = $derived(
@@ -65,7 +71,7 @@
 
   .section-label {
     display: block;
-    font-family: "DM Sans", system-ui, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.8rem;
     font-weight: 500;
     letter-spacing: 2px;
@@ -75,7 +81,7 @@
   }
 
   h2 {
-    font-family: "Playfair Display", Georgia, serif;
+    font-family: var(--font-heading);
     font-size: 2.25rem;
     font-weight: 700;
     color: var(--color-text);
@@ -91,8 +97,8 @@
   }
 
   .about-bio p {
-    font-family: "DM Sans", system-ui, sans-serif;
-    font-size: 1.05rem;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
     line-height: 1.7;
     color: var(--color-text-secondary);
     margin-bottom: 16px;
@@ -109,7 +115,7 @@
   }
 
   .detail-group h3 {
-    font-family: "Playfair Display", Georgia, serif;
+    font-family: var(--font-heading);
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--color-text);
@@ -117,7 +123,7 @@
   }
 
   .detail-group p {
-    font-family: "DM Sans", system-ui, sans-serif;
+    font-family: var(--font-body);
     font-size: 1rem;
     line-height: 1.6;
     color: var(--color-text-secondary);
