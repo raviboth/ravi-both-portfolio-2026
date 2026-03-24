@@ -26,7 +26,14 @@
 <button class="card" onclick={() => onSelect(project)}>
   {#if project.images.length > 0}
     <div class="card-thumbnail">
-      <img src={project.images[0]} alt={project.title} class="card-thumbnail-img" />
+      <img
+        src={project.images[0]}
+        alt={project.title}
+        class="card-thumbnail-img"
+        width="400"
+        height="200"
+        loading={index < 3 ? 'eager' : 'lazy'}
+      />
     </div>
   {:else}
     <div class="card-thumbnail card-thumbnail--initials" style:background-color={thumbnailColor}>

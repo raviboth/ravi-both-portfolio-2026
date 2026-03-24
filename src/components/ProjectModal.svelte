@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { tick } from 'svelte';
   import { activeProject, type Project } from '../stores/modal';
+  import IconPillButton from './IconPillButton.svelte';
 
   let isOpen = $state(false);
   let currentIndex = $state(0);
@@ -13,30 +14,7 @@
   let modalContainerEl: HTMLDivElement | undefined = $state(undefined);
   let triggerElement: HTMLElement | null = null;
 
-  // Subscribe to store
-  const unsubscribe = activeProject.subscribe((value) => {
-    if (value !== null) {
-      // Opening: set content first, then animate open
-      project = value;
-      isOpen = true;
-      currentIndex = 0;
-      imageLoaded = false;
-      triggerElement = document.activeElement as HTMLElement | null;
-      document.body.style.overflow = 'hidden';
-      tick().then(() => {
-        closeBtnEl?.focus();
-      });
-    } else if (isOpen) {
-      // Closing: animate out first, then clear content
-      isOpen = false;
-      document.body.style.overflow = '';
-      triggerElement?.focus();
-      triggerElement = null;
-      setTimeout(() => {
-        project = null;
-      }, 400);
-    }
-  });
+  let unsubscribe: (() => void) | undefined;
 
   // Preload adjacent images
   $effect(() => {
@@ -135,8 +113,37 @@
   }
 
   onMount(() => {
+    let closeTimer: ReturnType<typeof setTimeout> | undefined;
+
+    unsubscribe = activeProject.subscribe((value) => {
+      if (closeTimer) {
+        clearTimeout(closeTimer);
+        closeTimer = undefined;
+      }
+      if (value !== null) {
+        project = value;
+        isOpen = true;
+        currentIndex = 0;
+        imageLoaded = false;
+        triggerElement = document.activeElement as HTMLElement | null;
+        document.body.style.overflow = 'hidden';
+        tick().then(() => {
+          closeBtnEl?.focus();
+        });
+      } else if (isOpen) {
+        isOpen = false;
+        document.body.style.overflow = '';
+        triggerElement?.focus();
+        triggerElement = null;
+        closeTimer = setTimeout(() => {
+          project = null;
+        }, 400);
+      }
+    });
+
     return () => {
-      unsubscribe();
+      unsubscribe?.();
+      if (closeTimer) clearTimeout(closeTimer);
       document.body.style.overflow = '';
     };
   });
@@ -162,8 +169,6 @@
     class:full-width={!hasImages}
     bind:this={modalContainerEl}
     role="document"
-    onclick={(e) => e.stopPropagation()}
-    onkeydown={() => {}}
   >
     <!-- LEFT: Gallery Panel (dark) -->
     {#if hasImages}
@@ -264,22 +269,22 @@
       {/if}
 
       <div class="action-buttons">
-        {#if project?.liveUrl}
-          <a class="btn btn-primary" href={project.liveUrl} target="_blank" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M6 2H2v12h12v-4M10 2h4v4M9 7l5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-            View Live Site
-          </a>
-        {/if}
-        {#if project?.githubUrl}
-          <a class="btn btn-secondary" href={project.githubUrl} target="_blank" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M8 1C4.13 1 1 4.13 1 8c0 3.1 2 5.7 4.8 6.6.35.07.48-.15.48-.33 0-.17-.01-.72-.01-1.3-1.76.32-2.21-.43-2.35-.82-.08-.2-.42-.82-.72-.99-.24-.13-.6-.46-.01-.47.55-.01.95.51 1.08.72.63 1.06 1.63.76 2.04.58.06-.45.24-.76.44-.93-1.55-.18-3.18-.78-3.18-3.46 0-.76.27-1.39.72-1.88-.07-.17-.31-.89.07-1.85 0 0 .58-.18 1.92.72.56-.16 1.15-.24 1.75-.24.6 0 1.19.08 1.75.24 1.34-.91 1.92-.72 1.92-.72.38.96.14 1.68.07 1.85.44.49.72 1.11.72 1.88 0 2.69-1.63 3.28-3.19 3.46.25.22.47.64.47 1.29 0 .93-.01 1.68-.01 1.92 0 .18.13.4.48.33A7.01 7.01 0 0015 8c0-3.87-3.13-7-7-7z" fill="currentColor" />
-            </svg>
-            View on GitHub
-          </a>
-        {/if}
+        {#each project?.links ?? [] as link}
+          {#if link.label === 'Live Site'}
+            <IconPillButton href={link.url} label="View Live Site" icon="external" external />
+          {:else if link.label === 'GitHub'}
+            <a class="btn btn-secondary" href={link.url} target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M8 1C4.13 1 1 4.13 1 8c0 3.1 2 5.7 4.8 6.6.35.07.48-.15.48-.33 0-.17-.01-.72-.01-1.3-1.76.32-2.21-.43-2.35-.82-.08-.2-.42-.82-.72-.99-.24-.13-.6-.46-.01-.47.55-.01.95.51 1.08.72.63 1.06 1.63.76 2.04.58.06-.45.24-.76.44-.93-1.55-.18-3.18-.78-3.18-3.46 0-.76.27-1.39.72-1.88-.07-.17-.31-.89.07-1.85 0 0 .58-.18 1.92.72.56-.16 1.15-.24 1.75-.24.6 0 1.19.08 1.75.24 1.34-.91 1.92-.72 1.92-.72.38.96.14 1.68.07 1.85.44.49.72 1.11.72 1.88 0 2.69-1.63 3.28-3.19 3.46.25.22.47.64.47 1.29 0 .93-.01 1.68-.01 1.92 0 .18.13.4.48.33A7.01 7.01 0 0015 8c0-3.87-3.13-7-7-7z" fill="currentColor" />
+              </svg>
+              View on GitHub
+            </a>
+          {:else}
+            <a class="btn btn-secondary" href={link.url} target="_blank" rel="noopener noreferrer">
+              {link.label}
+            </a>
+          {/if}
+        {/each}
       </div>
     </div>
   </div>
@@ -423,8 +428,8 @@
 
   .counter {
     color: rgba(255, 255, 255, 0.7);
-    font-family: 'DM Sans', system-ui, sans-serif;
-    font-size: 14px;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
     flex-shrink: 0;
   }
 
@@ -496,17 +501,17 @@
   }
 
   .project-title {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 28px;
+    font-size: 1.75rem;
     color: var(--color-text, #2d2d2d);
     margin: 0 0 8px 0;
     padding-right: 40px;
   }
 
   .project-role {
-    font-family: 'DM Sans', system-ui, sans-serif;
-    font-size: 16px;
+    font-family: var(--font-body);
+    font-size: 1rem;
     color: var(--color-primary-dark, #3a6b4e);
     margin: 0 0 16px 0;
   }
@@ -520,17 +525,17 @@
   }
 
   .project-desc {
-    font-family: 'DM Sans', system-ui, sans-serif;
-    font-size: 15px;
+    font-family: var(--font-body);
+    font-size: 0.935rem;
     line-height: 1.6;
     color: var(--color-text, #2d2d2d);
     margin: 0 0 24px 0;
   }
 
   .contributions-heading {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 18px;
+    font-size: 1.125rem;
     color: var(--color-text, #2d2d2d);
     margin: 0 0 12px 0;
   }
@@ -542,8 +547,8 @@
   }
 
   .contributions-list li {
-    font-family: 'DM Sans', system-ui, sans-serif;
-    font-size: 14px;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
     line-height: 1.6;
     color: var(--color-text, #2d2d2d);
     margin-bottom: 6px;
@@ -555,8 +560,8 @@
 
   .tech-tag {
     display: inline-block;
-    font-family: 'DM Sans', system-ui, sans-serif;
-    font-size: 13px;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
     padding: 4px 12px;
     border-radius: 999px;
     background: #e8f5e9;
@@ -575,27 +580,11 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-family: 'DM Sans', system-ui, sans-serif;
+    font-family: var(--font-body);
     font-weight: 600;
-    font-size: 14px;
+    font-size: 0.875rem;
     text-decoration: none;
     transition: background var(--transition-base), transform var(--transition-fast);
-  }
-
-  .btn-primary {
-    background: var(--color-primary-dark, #4a7050);
-    color: #ffffff;
-    border-radius: 999px;
-    padding: 10px 24px;
-  }
-
-  .btn-primary:hover {
-    background: #3a5c40;
-    transform: scale(1.03);
-  }
-
-  .btn-primary:active {
-    transform: scale(0.97);
   }
 
   .btn-secondary {
@@ -660,13 +649,13 @@
     }
 
     .project-title {
-      font-size: 22px;
+      font-size: 1.375rem;
       padding-right: 0;
       flex: 1;
     }
 
     .contributions-list li {
-      font-size: 13px;
+      font-size: 0.815rem;
     }
   }
 </style>

@@ -3,6 +3,7 @@
   import { onMount } from 'svelte';
   import { revealOnScroll } from '../lib/actions/revealOnScroll';
   import IconPillButton from './IconPillButton.svelte';
+  import { CONTACT, REVEAL_TRANSITION } from '../data/constants';
 
   const phrases = ['Engineering craft.', 'Founder grit.', 'Systems architecture.'];
   const DISPLAY_MS = 4000;
@@ -14,20 +15,19 @@
   let phase: 'initial' | 'visible' | 'exiting' | 'entering' = $state('initial');
   let paused = $state(false);
   let timer: ReturnType<typeof setInterval> | undefined;
+  let pendingTimeout: ReturnType<typeof setTimeout> | undefined;
+  let pendingRaf: number | undefined;
 
   function startCycling() {
     stopCycling();
     timer = setInterval(() => {
       if (paused) return;
-      // Exit: slide up and out
       phase = 'exiting';
-      setTimeout(() => {
-        // Swap text while hidden, set to entering position (below)
+      pendingTimeout = setTimeout(() => {
         currentIndex = (currentIndex + 1) % phrases.length;
         phase = 'entering';
-        // Next frame: trigger rise-up
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
+        pendingRaf = requestAnimationFrame(() => {
+          pendingRaf = requestAnimationFrame(() => {
             phase = 'visible';
           });
         });
@@ -37,6 +37,8 @@
 
   function stopCycling() {
     if (timer) clearInterval(timer);
+    if (pendingTimeout) clearTimeout(pendingTimeout);
+    if (pendingRaf) cancelAnimationFrame(pendingRaf);
   }
 
   function handleMouseEnter() {
@@ -62,7 +64,7 @@
 
 <section class="hero" id="hero" use:revealOnScroll={() => (visible = true)}>
   {#if visible}
-  <div class="hero-grid" in:fly={{ y: 20, duration: 600 }}>
+  <div class="hero-grid" in:fly={REVEAL_TRANSITION}>
     <!-- Left column: Headline, subtitle, buttons -->
     <div class="hero-content">
       <!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -87,24 +89,24 @@
       </p>
       <div class="hero-buttons">
         <IconPillButton
-          href="mailto:ravi@raviboth.com"
+          href="mailto:{CONTACT.email}"
           label="Email"
           icon="email"
         />
         <IconPillButton
-          href="https://github.com/raviboth"
+          href={CONTACT.github}
           label="GitHub"
           icon="github"
           external
         />
         <IconPillButton
-          href="https://linkedin.com/in/raviboth"
+          href={CONTACT.linkedin}
           label="LinkedIn"
           icon="linkedin"
           external
         />
         <IconPillButton
-          href="/Both, Ravi - resume.pdf"
+          href={CONTACT.resume}
           label="Resume"
           icon="resume"
           external
@@ -131,7 +133,7 @@
 <style>
   .hero {
     padding: 100px var(--space-section-x) var(--space-section-y) var(--space-section-x);
-    background-color: #faf9f6;
+    background-color: var(--color-bg);
     min-height: 400px;
   }
 
@@ -145,11 +147,11 @@
   }
 
   .hero-content h1 {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--font-heading);
     font-size: 3.2rem;
     line-height: 1.15;
     font-weight: 700;
-    color: #2d2d2d;
+    color: var(--color-text);
     margin-bottom: 20px;
   }
 
@@ -161,7 +163,7 @@
   }
 
   .hero-content h1 .accent {
-    color: #c47d2e;
+    color: var(--color-accent);
     display: inline-block;
     transform: translateY(0);
     transition: transform 0.6s ease-in-out;
@@ -194,10 +196,10 @@
   }
 
   .subtitle {
-    font-family: 'DM Sans', system-ui, sans-serif;
+    font-family: var(--font-body);
     font-size: 1.15rem;
     line-height: 1.6;
-    color: #555555;
+    color: var(--color-text-secondary);
     margin-bottom: 32px;
   }
 
@@ -222,17 +224,17 @@
   }
 
   .portrait-name {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--font-heading);
     font-size: 1.4rem;
     font-weight: 700;
-    color: #2d2d2d;
+    color: var(--color-text);
     margin-top: 16px;
   }
 
   .portrait-title {
-    font-family: 'DM Sans', system-ui, sans-serif;
+    font-family: var(--font-body);
     font-size: 1rem;
-    color: #555555;
+    color: var(--color-text-secondary);
     margin-top: 4px;
   }
 

@@ -2,7 +2,7 @@
   interface Props {
     href: string;
     label: string;
-    icon: 'email' | 'github' | 'linkedin' | 'resume';
+    icon: 'email' | 'github' | 'linkedin' | 'resume' | 'external';
     external?: boolean;
   }
 
@@ -100,6 +100,23 @@
         stroke-linejoin="round"
       />
     </svg>
+  {:else if icon === 'external'}
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M7 3H3v12h12v-4M11 3h4v4M10 8l5-5"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
   {/if}
   <span>{label}</span>
 </a>
@@ -111,10 +128,10 @@
     gap: 8px;
     padding: 10px 20px;
     border-radius: 22px;
-    background-color: var(--color-primary);
+    background-color: var(--color-primary-dark);
     border: 1.5px solid transparent;
     color: #ffffff;
-    font-family: 'DM Sans', system-ui, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.95rem;
     font-weight: 600;
     text-decoration: none;
@@ -122,7 +139,7 @@
   }
 
   .pill-button:hover {
-    background-color: var(--color-primary-dark);
+    background-color: var(--color-primary);
     transform: scale(1.03);
   }
 

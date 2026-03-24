@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Nav from '../components/Nav.svelte';
+import { CONTACT } from '../data/constants';
 
 interface Props {
   title?: string;
@@ -61,10 +62,10 @@ const ogImage = `${siteUrl}/og-image.png`;
             "name": "Ravi Both",
             "jobTitle": "Full-Stack Engineer & Tech Consultant",
             "url": "https://www.raviboth.com",
-            "email": "ravi@raviboth.com",
+            "email": CONTACT.email,
             "sameAs": [
-              "https://github.com/raviboth",
-              "https://linkedin.com/in/raviboth"
+              CONTACT.github,
+              CONTACT.linkedin
             ]
           },
           {

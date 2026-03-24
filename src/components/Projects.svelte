@@ -5,6 +5,7 @@
   import ProjectCard from './ProjectCard.svelte';
   import ProjectModal from './ProjectModal.svelte';
   import { activeProject } from '../stores/modal';
+  import { REVEAL_TRANSITION } from '../data/constants';
 
   let visible = $state(false);
 
@@ -16,26 +17,14 @@
   let { projects, onSelectProject }: Props = $props();
 
   function handleSelectProject(project: Project) {
-    // Set the active project in the store for the modal
-    activeProject.set({
-      title: project.title,
-      role: project.role,
-      description: project.shortDesc,
-      longDesc: project.longDesc,
-      contributions: project.contributions,
-      tech: project.tech,
-      images: project.images,
-      liveUrl: project.links?.find(l => l.label === 'Live Site')?.url,
-      githubUrl: project.links?.find(l => l.label === 'GitHub')?.url,
-    });
-    // Also call the external handler if provided (useful for testing/Storybook)
+    activeProject.set(project);
     onSelectProject?.(project);
   }
 </script>
 
 <section id="projects" class="section-padding projects-section" use:revealOnScroll={() => (visible = true)}>
   {#if visible}
-  <div in:fly={{ y: 20, duration: 600 }}>
+  <div in:fly={REVEAL_TRANSITION}>
     <span class="section-label">PROJECTS</span>
     <h2 class="section-heading">Selected Work</h2>
     <div class="projects-grid">
@@ -58,8 +47,8 @@
 
   .section-label {
     display: block;
-    font-family: 'DM Sans', system-ui, sans-serif;
-    font-size: 13px;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
     font-weight: 500;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -68,8 +57,8 @@
   }
 
   .section-heading {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 36px;
+    font-family: var(--font-heading);
+    font-size: 2.25rem;
     font-weight: 700;
     color: var(--color-text);
     margin-bottom: 48px;
@@ -98,14 +87,14 @@
   /* Tablet: 768px - 1023px */
   @media (max-width: 1023px) {
     .section-heading {
-      font-size: 32px;
+      font-size: 2rem;
     }
   }
 
   /* Mobile: < 768px */
   @media (max-width: 767px) {
     .section-heading {
-      font-size: 28px;
+      font-size: 1.75rem;
       margin-bottom: 32px;
     }
   }
