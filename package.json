@@ -19,7 +19,7 @@
     "typecheck": "astro check --tsconfig tsconfig.astro-check.json && svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
     "test": "vitest run",
     "prepare": "husky",
-    "fallow": "fallow audit --base \"$(git merge-base origin/dev HEAD)\""
+    "fallow": "git fetch --quiet origin dev; fallow audit --base \"$(git merge-base origin/dev HEAD)\""
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.1",
