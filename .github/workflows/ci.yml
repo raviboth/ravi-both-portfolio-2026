@@ -81,6 +81,29 @@ jobs:
           CONFIG: ${{ github.head_ref == 'dev' && github.base_ref == 'main' && 'commitlint.release.config.js' || 'commitlint.config.js' }}
         run: pnpm exec commitlint --config "$CONFIG" --from "$BASE_SHA" --to "$HEAD_SHA" --verbose
 
+  fallow:
+    # Fails on dead code, complexity or duplication the PR introduces. Existing findings do not gate.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/setup
+      - name: Audit new findings
+        # A release PR (dev to main) only reports. Each feature PR was gated into dev, and a
+        # finding that appears only in combination has no feature branch to fix it on.
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          RELEASE: ${{ github.head_ref == 'dev' && github.base_ref == 'main' }}
+        run: |
+          if [ "$RELEASE" = true ]; then
+            pnpm exec fallow review --brief --base "$BASE_SHA"
+          else
+            pnpm exec fallow audit --base "$BASE_SHA"
+          fi
+
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 10
