@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/svelte';
+import { expect, waitFor, within } from 'storybook/test';
 import ProjectModal from './ProjectModal.svelte';
 import { activeProject, type Project } from '../stores/modal';
 import { projects } from '../data/projects';
@@ -40,24 +41,50 @@ function openModal(project: Project) {
   };
 }
 
+/** Wait for the open transition, then return the dialog element. */
+async function openDialog(canvasElement: HTMLElement): Promise<HTMLElement> {
+  const dialog = within(canvasElement).getByRole('dialog');
+  await waitFor(() => expect(dialog).toHaveClass('open'));
+  return dialog;
+}
+
 /** Default: open modal with a fully populated project (single image) */
 export const Default: Story = {
   beforeEach: openModal(defaultProject),
+  play: async ({ canvasElement }) => {
+    const dialog = await openDialog(canvasElement);
+    await expect(within(dialog).getByText(defaultProject.title)).toBeVisible();
+    await expect(dialog.querySelector('.gallery-panel')).not.toBeNull();
+    await expect(within(dialog).queryByLabelText('Previous image')).toBeNull();
+  },
 };
 
-/** WithMultipleImages: 4 images showing gallery arrows and thumbnail strip */
+/** WithMultipleImages: several images showing gallery arrows and thumbnail strip */
 export const WithMultipleImages: Story = {
   beforeEach: openModal(multiImageProject),
+  play: async ({ canvasElement }) => {
+    const dialog = await openDialog(canvasElement);
+    await expect(within(dialog).getByLabelText('Previous image')).toBeInTheDocument();
+    await expect(within(dialog).getAllByRole('tab')).toHaveLength(multiImageProject.images.length);
+  },
 };
 
 /** NoImages: empty images array triggers full-width content panel */
 export const NoImages: Story = {
   beforeEach: openModal(noImagesProject),
+  play: async ({ canvasElement }) => {
+    const dialog = await openDialog(canvasElement);
+    await expect(dialog.querySelector('.modal-container')).toHaveClass('full-width');
+    await expect(dialog.querySelector('.gallery-panel')).toBeNull();
+  },
 };
 
 /** Mobile: 375px viewport showing full-screen column layout */
 export const Mobile: Story = {
   beforeEach: openModal(defaultProject),
+  play: async ({ canvasElement }) => {
+    await openDialog(canvasElement);
+  },
   parameters: {
     viewport: { defaultViewport: 'mobile1' },
     chromatic: { viewports: [375] },

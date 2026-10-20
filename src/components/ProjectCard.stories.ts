@@ -25,9 +25,11 @@ export const OddIndex: Story = {
   args: { project: projects[1], index: 1 },
 };
 
-/** LongTechList: raviboth-com has 8 tech tags to demonstrate wrapping */
+/** LongTechList: the project with the most tech tags, to demonstrate wrapping */
+const longestTechProject = projects.reduce((a, b) => (b.tech.length > a.tech.length ? b : a));
+
 export const LongTechList: Story = {
-  args: { project: projects[7], index: 0 },
+  args: { project: longestTechProject, index: 0 },
 };
 
 /** Mobile: 375px viewport */
