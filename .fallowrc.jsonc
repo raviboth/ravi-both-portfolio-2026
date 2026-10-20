@@ -2,6 +2,9 @@
   "$schema": "./node_modules/fallow/schema.json",
   // CI passes this to commitlint with --config, so no import reaches it.
   "entry": ["commitlint.release.config.js"],
+  // astro build needs these at build time; fallow reads them as test-only because only
+  // config files import them. For a static site that is not a reason to move them.
+  "ignoreDependencies": ["astro", "@astrojs/sitemap", "@astrojs/svelte"],
   "audit": {
     // Fail only on findings the change introduces. Existing ones are reported, not gated.
     "gate": "new-only",
