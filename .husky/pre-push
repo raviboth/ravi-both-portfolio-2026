@@ -30,4 +30,12 @@ pnpm test
 echo "pre-push: build"
 pnpm build
 
+echo "pre-push: fallow audit (new findings vs origin/dev)"
+git fetch --quiet origin dev 2>/dev/null || true
+if git rev-parse --verify --quiet origin/dev >/dev/null; then
+  pnpm exec fallow audit --base origin/dev --quiet
+else
+  echo "pre-push: skipped fallow audit: origin/dev not reachable"
+fi
+
 echo "pre-push: all checks passed"

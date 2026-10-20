@@ -1,0 +1,9 @@
+{
+  "$schema": "./node_modules/fallow/schema.json",
+  // CI passes this to commitlint with --config, so no import reaches it.
+  "entry": ["commitlint.release.config.js"],
+  "audit": {
+    // Fail only on findings the change introduces. Existing ones are reported, not gated.
+    "gate": "new-only",
+  },
+}

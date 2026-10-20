@@ -81,6 +81,20 @@ jobs:
           CONFIG: ${{ github.head_ref == 'dev' && github.base_ref == 'main' && 'commitlint.release.config.js' || 'commitlint.config.js' }}
         run: pnpm exec commitlint --config "$CONFIG" --from "$BASE_SHA" --to "$HEAD_SHA" --verbose
 
+  fallow:
+    # Fails on dead code, complexity or duplication the PR introduces. Existing findings do not gate.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/setup
+      - env:
+          BASE_REF: ${{ github.base_ref }}
+        run: pnpm exec fallow audit --base "origin/$BASE_REF"
+
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 10
