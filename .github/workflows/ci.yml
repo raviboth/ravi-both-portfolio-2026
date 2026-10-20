@@ -62,6 +62,25 @@ jobs:
         run: pnpm exec playwright install-deps chromium-headless-shell
       - run: pnpm test
 
+  commitlint:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/setup
+      # On a release PR (dev to main) this lints every commit dev adds with the release
+      # config: header and type rules, looser lengths. That also covers commits pushed to
+      # dev without a PR, for headers and types only.
+      - name: Lint commit messages
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          CONFIG: ${{ github.head_ref == 'dev' && github.base_ref == 'main' && 'commitlint.release.config.js' || 'commitlint.config.js' }}
+        run: pnpm exec commitlint --config "$CONFIG" --from "$BASE_SHA" --to "$HEAD_SHA" --verbose
+
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 10
