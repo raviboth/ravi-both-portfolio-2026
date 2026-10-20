@@ -43,7 +43,9 @@ function openModal(project: Project) {
 
 /** Wait for the open transition, then return the dialog element. */
 async function openDialog(canvasElement: HTMLElement): Promise<HTMLElement> {
-  const dialog = within(canvasElement).getByRole('dialog');
+  // The closed backdrop is visibility: hidden, so query hidden elements too and
+  // let waitFor retry until the open class lands.
+  const dialog = await within(canvasElement).findByRole('dialog', { hidden: true });
   await waitFor(() => expect(dialog).toHaveClass('open'));
   return dialog;
 }
