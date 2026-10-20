@@ -9,8 +9,8 @@ const meta = {
   component: ProjectCard,
   parameters: { layout: 'centered' },
   args: { onSelect: fn() },
-  decorators: [() => ProjectCardDecorator],
-} satisfies Meta<ProjectCard>;
+  decorators: [() => ({ Component: ProjectCardDecorator })],
+} satisfies Meta<typeof ProjectCard>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

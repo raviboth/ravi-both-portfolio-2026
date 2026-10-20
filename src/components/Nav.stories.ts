@@ -6,7 +6,7 @@ const meta = {
   title: 'Components/Nav',
   component: Nav,
   parameters: { layout: 'fullscreen' },
-} satisfies Meta<Nav>;
+} satisfies Meta<typeof Nav>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

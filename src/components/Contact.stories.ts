@@ -14,7 +14,7 @@ const meta = {
       ],
     },
   },
-} satisfies Meta<Contact>;
+} satisfies Meta<typeof Contact>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

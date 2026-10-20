@@ -8,7 +8,7 @@ const meta = {
   component: Projects,
   parameters: { layout: 'fullscreen' },
   args: { projects, onSelectProject: fn() },
-} satisfies Meta<Projects>;
+} satisfies Meta<typeof Projects>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

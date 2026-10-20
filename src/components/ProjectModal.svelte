@@ -8,7 +8,7 @@
   let currentIndex = $state(0);
   let imageLoaded = $state(false);
   let touchStartX = $state(0);
-  let project: Project | null = $state(null);
+  let project = $state<Project | null>(null);
 
   let closeBtnEl: HTMLButtonElement | undefined = $state(undefined);
   let modalContainerEl: HTMLDivElement | undefined = $state(undefined);
