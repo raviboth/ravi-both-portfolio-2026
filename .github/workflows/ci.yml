@@ -71,10 +71,9 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/setup
-      # Release PRs (dev to main) carry dev's squash commits. pr-title.yml checked
-      # each one as the title of its own PR.
+      # On a release PR (dev to main) this lints every commit dev adds, which also
+      # catches anything pushed to dev without a PR.
       - name: Lint commit messages
-        if: ${{ !(github.head_ref == 'dev' && github.base_ref == 'main') }}
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
