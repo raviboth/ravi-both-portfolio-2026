@@ -225,7 +225,7 @@
           <div class="gallery-footer">
             <span class="counter">{currentIndex + 1} / {totalImages}</span>
             <div class="thumbnail-strip" role="tablist">
-              {#each project?.images ?? [] as thumb, i (thumb)}
+              {#each project?.images ?? [] as thumb, i (i)}
                 <button
                   class="thumbnail"
                   class:active={i === currentIndex}
@@ -270,7 +270,7 @@
       {#if project?.contributions?.length}
         <h3 class="contributions-heading">Key Contributions</h3>
         <ul class="contributions-list">
-          {#each project.contributions as item (item)}
+          {#each project.contributions as item, i (i)}
             <li>{item}</li>
           {/each}
         </ul>
@@ -278,14 +278,14 @@
 
       {#if project?.tech?.length}
         <div class="tech-tags">
-          {#each project.tech as tag (tag)}
+          {#each project.tech as tag, i (i)}
             <span class="tech-tag">{tag}</span>
           {/each}
         </div>
       {/if}
 
       <div class="action-buttons">
-        {#each project?.links ?? [] as link (link.url)}
+        {#each project?.links ?? [] as link, i (i)}
           {#if link.label === 'Live Site'}
             <IconPillButton href={link.url} label="View Live Site" icon="external" external />
           {:else if link.label === 'GitHub'}
