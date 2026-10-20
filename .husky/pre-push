@@ -1,5 +1,16 @@
 # Mirror CI before the push leaves the machine.
-set -e
+
+# Skip pushes that only delete branches or push tags: no code changes.
+code_push=0
+while read -r local_ref local_sha remote_ref remote_sha; do
+  case "$local_ref" in refs/tags/*) continue ;; esac
+  case "$local_sha" in *[!0]*) code_push=1 ;; esac
+done
+[ "$code_push" -eq 1 ] || exit 0
+
+if [ -n "$(git status --porcelain)" ]; then
+  echo "pre-push: note: checks run on the working tree, including uncommitted changes"
+fi
 
 echo "pre-push: lint"
 pnpm lint
@@ -8,7 +19,10 @@ pnpm format:check
 echo "pre-push: typecheck"
 pnpm typecheck
 
-echo "pre-push: test"
+echo "pre-push: test (first run on a new clone: pnpm exec playwright install chromium-headless-shell)"
 pnpm test
+
+echo "pre-push: build"
+pnpm build
 
 echo "pre-push: all checks passed"

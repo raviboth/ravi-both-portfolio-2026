@@ -63,8 +63,7 @@ jobs:
       - run: pnpm test
 
   commitlint:
-    # PRs only. Skip dev to main release PRs: their commits were linted on the way into dev.
-    if: github.event_name == 'pull_request' && !(github.head_ref == 'dev' && github.base_ref == 'main')
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -72,7 +71,14 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/setup
+      # A squash merge of a multi-commit PR uses the PR title as the commit subject.
+      - name: Lint PR title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: printf '%s\n' "$PR_TITLE" | pnpm exec commitlint --verbose
+      # Release PRs (dev to main) carry dev's squash commits, already checked by the title step on their own PRs.
       - name: Lint commit messages
+        if: ${{ !(github.head_ref == 'dev' && github.base_ref == 'main') }}
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
