@@ -62,6 +62,22 @@ jobs:
         run: pnpm exec playwright install-deps chromium-headless-shell
       - run: pnpm test
 
+  commitlint:
+    # PRs only. Skip dev to main release PRs: their commits were linted on the way into dev.
+    if: github.event_name == 'pull_request' && !(github.head_ref == 'dev' && github.base_ref == 'main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/setup
+      - name: Lint commit messages
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: pnpm exec commitlint --from "$BASE_SHA" --to "$HEAD_SHA" --verbose
+
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 10

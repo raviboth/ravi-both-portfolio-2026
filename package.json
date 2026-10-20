@@ -17,7 +17,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "astro check --tsconfig tsconfig.astro-check.json && svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
-    "test": "vitest run"
+    "test": "vitest run",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.1",
@@ -28,6 +29,8 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.11",
     "@chromatic-com/storybook": "^5.0.2",
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
     "@eslint/js": "^10.0.1",
     "@storybook/addon-a11y": "^10.3.1",
     "@storybook/addon-docs": "^10.3.1",
@@ -42,6 +45,7 @@
     "eslint-plugin-astro": "^3.2.1",
     "eslint-plugin-svelte": "^3.23.1",
     "globals": "^17.13.0",
+    "husky": "^9.1.7",
     "playwright": "^1.58.2",
     "prettier": "^3.9.10",
     "prettier-plugin-astro": "^1.1.1",

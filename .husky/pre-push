@@ -1,0 +1,14 @@
+# Mirror CI before the push leaves the machine.
+set -e
+
+echo "pre-push: lint"
+pnpm lint
+pnpm format:check
+
+echo "pre-push: typecheck"
+pnpm typecheck
+
+echo "pre-push: test"
+pnpm test
+
+echo "pre-push: all checks passed"
