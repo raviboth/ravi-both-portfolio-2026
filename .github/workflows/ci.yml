@@ -77,7 +77,8 @@ jobs:
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: pnpm exec commitlint --from "$BASE_SHA" --to "$HEAD_SHA" --verbose
+          CONFIG: ${{ github.head_ref == 'dev' && github.base_ref == 'main' && 'commitlint.release.config.js' || 'commitlint.config.js' }}
+        run: pnpm exec commitlint --config "$CONFIG" --from "$BASE_SHA" --to "$HEAD_SHA" --verbose
 
   build:
     runs-on: ubuntu-latest
