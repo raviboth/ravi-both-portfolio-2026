@@ -19,7 +19,7 @@
     "typecheck": "astro check --tsconfig tsconfig.astro-check.json && svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
     "test": "vitest run",
     "prepare": "husky",
-    "audit": "fallow audit"
+    "fallow": "fallow audit"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.1",

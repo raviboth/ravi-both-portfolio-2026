@@ -91,9 +91,18 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/setup
-      - env:
-          BASE_REF: ${{ github.base_ref }}
-        run: pnpm exec fallow audit --base "origin/$BASE_REF"
+      - name: Audit new findings
+        # A release PR (dev to main) only reports. Each feature PR was gated into dev, and a
+        # finding that appears only in combination has no feature branch to fix it on.
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          RELEASE: ${{ github.head_ref == 'dev' && github.base_ref == 'main' }}
+        run: |
+          if [ "$RELEASE" = true ]; then
+            pnpm exec fallow review --brief --base "$BASE_SHA"
+          else
+            pnpm exec fallow audit --base "$BASE_SHA"
+          fi
 
   build:
     runs-on: ubuntu-latest

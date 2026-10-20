@@ -30,10 +30,12 @@ pnpm test
 echo "pre-push: build"
 pnpm build
 
-echo "pre-push: fallow audit (new findings vs origin/dev)"
+echo "pre-push: fallow audit (new findings since this branch left dev)"
 git fetch --quiet origin dev 2>/dev/null || true
-if git rev-parse --verify --quiet origin/dev >/dev/null; then
-  pnpm exec fallow audit --base origin/dev --quiet
+# Compare against the merge-base, not dev's tip: a branch behind dev would otherwise be
+# blamed for findings dev has since fixed.
+if fork_point=$(git merge-base origin/dev HEAD 2>/dev/null); then
+  pnpm exec fallow audit --base "$fork_point"
 else
   echo "pre-push: skipped fallow audit: origin/dev not reachable"
 fi
