@@ -1,0 +1,43 @@
+# Mirror CI before the push leaves the machine.
+
+# Skip pushes that only delete branches or push tags: no code changes.
+code_push=0
+head_sha=$(git rev-parse HEAD)
+while read -r local_ref local_sha remote_ref remote_sha; do
+  case "$remote_ref" in refs/tags/*) continue ;; esac
+  case "$local_sha" in *[!0]*) ;; *) continue ;; esac
+  code_push=1
+  if [ "$local_sha" != "$head_sha" ]; then
+    echo "pre-push: warning: $local_ref is not the checked-out commit; checks run on the working tree, not on it"
+  fi
+done
+[ "$code_push" -eq 1 ] || exit 0
+
+if [ -n "$(git status --porcelain)" ]; then
+  echo "pre-push: note: checks run on the working tree, including uncommitted changes"
+fi
+
+echo "pre-push: lint"
+pnpm lint
+pnpm format:check
+
+echo "pre-push: typecheck"
+pnpm typecheck
+
+echo "pre-push: test (first run on a new clone: pnpm exec playwright install chromium-headless-shell)"
+pnpm test
+
+echo "pre-push: build"
+pnpm build
+
+echo "pre-push: fallow audit (new findings since this branch left dev)"
+git fetch --quiet origin dev 2>/dev/null || true
+# Compare against the merge-base, not dev's tip: a branch behind dev would otherwise be
+# blamed for findings dev has since fixed.
+if fork_point=$(git merge-base origin/dev HEAD 2>/dev/null); then
+  pnpm exec fallow audit --base "$fork_point"
+else
+  echo "pre-push: skipped fallow audit: origin/dev not reachable"
+fi
+
+echo "pre-push: all checks passed"

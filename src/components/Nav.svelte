@@ -36,9 +36,7 @@
 
     // Focus trap
     if (e.key === 'Tab' && overlayEl) {
-      const focusable = overlayEl.querySelectorAll<HTMLElement>(
-        'button, a[href]'
-      );
+      const focusable = overlayEl.querySelectorAll<HTMLElement>('button, a[href]');
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
 
@@ -90,7 +88,13 @@
         <!-- Top bun -->
         <path d="M6 13c0-5 4-8 10-8s10 3 10 8H6z" fill="currentColor" opacity="0.85" />
         <!-- Lettuce -->
-        <path d="M5 14c1.5 1 3-0.5 5 0.5s3 0 5-0.5 3 1 5 0.5 3-1.5 5-0.5 2 1 2 1" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" />
+        <path
+          d="M5 14c1.5 1 3-0.5 5 0.5s3 0 5-0.5 3 1 5 0.5 3-1.5 5-0.5 2 1 2 1"
+          stroke="currentColor"
+          stroke-width="1.5"
+          fill="none"
+          stroke-linecap="round"
+        />
         <!-- Patty -->
         <rect x="5" y="17" width="22" height="4" rx="2" fill="currentColor" opacity="0.7" />
         <!-- Bottom bun -->
@@ -101,7 +105,6 @@
 </nav>
 
 <!-- Mobile overlay -->
-<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <div
   class="overlay"
   class:open={menuOpen}
@@ -114,14 +117,14 @@
   tabindex="-1"
   use:smoothScroll
 >
-  <button
-    class="close-btn"
-    bind:this={closeBtn}
-    onclick={closeMenu}
-    aria-label="Close menu"
-  >
+  <button class="close-btn" bind:this={closeBtn} onclick={closeMenu} aria-label="Close menu">
     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-      <path d="M6 6l16 16M22 6L6 22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+      <path
+        d="M6 6l16 16M22 6L6 22"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+      />
     </svg>
   </button>
 
@@ -145,7 +148,9 @@
     top: 0;
     z-index: 100;
     background-color: transparent;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      box-shadow 0.3s ease;
   }
 
   .nav.scrolled {
@@ -234,14 +239,18 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 300ms ease, visibility 0s 300ms;
+    transition:
+      opacity 300ms ease,
+      visibility 0s 300ms;
   }
 
   .overlay.open {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transition: opacity 300ms ease, visibility 0s;
+    transition:
+      opacity 300ms ease,
+      visibility 0s;
   }
 
   .close-btn {

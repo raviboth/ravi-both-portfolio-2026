@@ -1,29 +1,27 @@
 <script lang="ts">
-  import { fly } from "svelte/transition";
-  import { onMount } from "svelte";
+  import { fly } from 'svelte/transition';
+  import { onMount } from 'svelte';
 
   let visible = $state(false);
   let reducedMotion = $state(false);
 
   onMount(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
     reducedMotion = mq.matches;
     visible = true;
 
     function onChange(e: MediaQueryListEvent) {
       reducedMotion = e.matches;
     }
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
   });
 
   const leftTransition = $derived(
     reducedMotion ? { y: 0, duration: 0 } : { y: 40, duration: 600, delay: 0 },
   );
   const rightTransition = $derived(
-    reducedMotion
-      ? { y: 0, duration: 0 }
-      : { y: 40, duration: 600, delay: 150 },
+    reducedMotion ? { y: 0, duration: 0 } : { y: 40, duration: 600, delay: 150 },
   );
 </script>
 
@@ -34,17 +32,22 @@
       <div class="about-bio" in:fly={leftTransition}>
         <h2>In a Nutshell</h2>
         <p>
-          I'm a full-stack engineer with an MBA in Business Process Improvement
-          and 7+ years of hands-on experience building web applications, APIs,
-          and mobile products. I bridge the gap between business strategy and
-          technical execution — from discovery and planning through
+          I'm a full-stack engineer with an MBA in Business Process Improvement and 7+ years of
+          hands-on experience building web applications, APIs, and mobile products. I bridge the gap
+          between business strategy and technical execution — from discovery and planning through
           architecture, implementation, and delivery.
         </p>
         <p>
-          I've built booking platforms in <span class="accent">Next.js</span>, shipped mobile features in
-          <span class="accent">React Native</span>, and architected microservices on <span class="accent">AWS</span>. My toolkit spans but isn't limited to
-          <span class="accent">TypeScript</span>, <span class="accent">React</span>, <span class="accent">Svelte</span>, <span class="accent">Node.js</span>, <span class="accent">Python</span>, and <span class="accent">RESTful APIs</span> — backed by real testing
-          discipline with <span class="accent">Cypress</span> and <span class="accent">Jest</span>, and design collaboration in <span class="accent">Figma</span>
+          I've built booking platforms in <span class="accent">Next.js</span>, shipped mobile
+          features in
+          <span class="accent">React Native</span>, and architected microservices on
+          <span class="accent">AWS</span>. My toolkit spans but isn't limited to
+          <span class="accent">TypeScript</span>, <span class="accent">React</span>,
+          <span class="accent">Svelte</span>, <span class="accent">Node.js</span>,
+          <span class="accent">Python</span>, and <span class="accent">RESTful APIs</span> — backed
+          by real testing discipline with <span class="accent">Cypress</span> and
+          <span class="accent">Jest</span>, and design collaboration in
+          <span class="accent">Figma</span>
           and <span class="accent">Storybook</span>.
         </p>
       </div>
@@ -156,6 +159,5 @@
       font-size: 1.75rem;
       margin-bottom: 20px;
     }
-
   }
 </style>

@@ -5,7 +5,7 @@ const meta = {
   title: 'Components/SkillPill',
   component: SkillPill,
   parameters: { layout: 'centered' },
-} satisfies Meta<SkillPill>;
+} satisfies Meta<typeof SkillPill>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

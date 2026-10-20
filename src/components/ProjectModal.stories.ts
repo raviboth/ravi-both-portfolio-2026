@@ -1,99 +1,92 @@
 import type { Meta, StoryObj } from '@storybook/svelte';
+import { expect, waitFor, within } from 'storybook/test';
 import ProjectModal from './ProjectModal.svelte';
-import { activeProject } from '../stores/modal';
+import { activeProject, type Project } from '../stores/modal';
+import { projects } from '../data/projects';
 
 const meta = {
   title: 'Components/ProjectModal',
   component: ProjectModal,
   parameters: { layout: 'fullscreen' },
-} satisfies Meta<ProjectModal>;
+} satisfies Meta<typeof ProjectModal>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/** Fully populated project with a single image. */
-const defaultProject = {
-  title: 'NextGen Purusha',
-  role: 'Designer & Developer',
-  description: 'Meditation focused site built to design specifications with SquareSpace.',
-  longDesc:
-    "Meditation focused site built to design specifications with SquareSpace for client convenience. Designed and developed the full site layout, imagery, and content structure to match the client's vision for a calming, accessible online presence.",
-  contributions: ['UI Design', 'Site Development', 'Client Collaboration'],
-  tech: ['HTML/CSS', 'JavaScript', 'Photoshop', 'SquareSpace'],
-  images: ['/projects/nextgen-purusha/1.webp'],
-  liveUrl: 'https://www.nextgenpurusha.com',
-  githubUrl: 'https://github.com/example/nextgen-purusha',
-};
+function byId(id: string): Project {
+  const project = projects.find((p) => p.id === id);
+  if (!project) throw new Error(`No project with id "${id}" in src/data/projects.ts`);
+  return project;
+}
 
-/** Project with 4 images to exercise gallery navigation and thumbnail strip. */
-const multiImageProject = {
-  title: 'Raviboth.com',
-  role: 'Designer & Developer',
-  description: 'This portfolio site.',
-  longDesc:
-    'This portfolio site. Designed in Figma and built with React, featuring project showcases, responsive layout, and integration with external APIs for dynamic content.',
-  contributions: [
-    'UI/UX Design',
-    'Front-End Development',
-    'API Integration',
-    'Deployment',
-  ],
-  tech: ['HTML/CSS', 'SASS', 'React', 'Figma', 'Git', 'APIs', 'Photoshop', 'Illustrator'],
-  images: [
-    '/projects/raviboth-com/1.webp',
-    '/projects/nextgen-purusha/1.webp',
-    '/projects/walker-pewter/1.webp',
-    '/projects/drum-machine/1.webp',
-  ],
-  liveUrl: 'https://raviboth.com',
-  githubUrl: 'https://github.com/raviboth/raviboth-com',
-};
+/** Fully populated project with a single image. */
+const defaultProject = byId('nextgen-purusha');
+
+/** Project with several images to exercise gallery navigation and thumbnail strip. */
+const multiImageProject = byId('bit');
 
 /** Project with no images to verify full-width content panel. */
-const noImagesProject = {
-  title: 'Sutherland',
-  role: 'Front-End Developer',
-  description: 'Business card generator site for hospital.',
-  longDesc:
-    'Business card generator site for hospital that creates orders and bills as well as creates PDFs of the business cards. Collaborative effort with two other developers. Contribution focused on setup and layout.',
-  contributions: ['Project Setup', 'Layout Development', 'Team Collaboration'],
-  tech: ['HTML/CSS', 'jQuery', 'Git', 'PHP', 'Photoshop'],
-  images: [],
-};
+const noImagesProject: Project = { ...byId('sutherland'), images: [] };
 
 /**
- * Set the activeProject store so the modal opens, then clean it up
- * on story teardown to prevent state leaking between stories.
+ * Set the activeProject store so the modal opens, then reset it on story
+ * teardown so state does not leak between stories.
  */
-function openModal(project: typeof defaultProject) {
-  return ({ canvasElement }: { canvasElement: HTMLElement }) => {
+function openModal(project: Project) {
+  return () => {
     activeProject.set(project);
-
-    // Return a cleanup function that resets the store when the story unmounts
     return () => {
       activeProject.set(null);
     };
   };
 }
 
+/** Wait for the open transition, then return the dialog element. */
+async function openDialog(canvasElement: HTMLElement): Promise<HTMLElement> {
+  // The closed backdrop is visibility: hidden, so query hidden elements too and
+  // let waitFor retry until the open class lands.
+  const dialog = await within(canvasElement).findByRole('dialog', { hidden: true });
+  await waitFor(() => expect(dialog).toHaveClass('open'));
+  return dialog;
+}
+
 /** Default: open modal with a fully populated project (single image) */
 export const Default: Story = {
-  play: openModal(defaultProject),
+  beforeEach: openModal(defaultProject),
+  play: async ({ canvasElement }) => {
+    const dialog = await openDialog(canvasElement);
+    await expect(within(dialog).getByText(defaultProject.title)).toBeVisible();
+    await expect(dialog.querySelector('.gallery-panel')).not.toBeNull();
+    await expect(within(dialog).queryByLabelText('Previous image')).toBeNull();
+  },
 };
 
-/** WithMultipleImages: 4 images showing gallery arrows and thumbnail strip */
+/** WithMultipleImages: several images showing gallery arrows and thumbnail strip */
 export const WithMultipleImages: Story = {
-  play: openModal(multiImageProject),
+  beforeEach: openModal(multiImageProject),
+  play: async ({ canvasElement }) => {
+    const dialog = await openDialog(canvasElement);
+    await expect(within(dialog).getByLabelText('Previous image')).toBeInTheDocument();
+    await expect(within(dialog).getAllByRole('tab')).toHaveLength(multiImageProject.images.length);
+  },
 };
 
 /** NoImages: empty images array triggers full-width content panel */
 export const NoImages: Story = {
-  play: openModal(noImagesProject),
+  beforeEach: openModal(noImagesProject),
+  play: async ({ canvasElement }) => {
+    const dialog = await openDialog(canvasElement);
+    await expect(dialog.querySelector('.modal-container')).toHaveClass('full-width');
+    await expect(dialog.querySelector('.gallery-panel')).toBeNull();
+  },
 };
 
 /** Mobile: 375px viewport showing full-screen column layout */
 export const Mobile: Story = {
-  play: openModal(defaultProject),
+  beforeEach: openModal(defaultProject),
+  play: async ({ canvasElement }) => {
+    await openDialog(canvasElement);
+  },
   parameters: {
     viewport: { defaultViewport: 'mobile1' },
     chromatic: { viewports: [375] },

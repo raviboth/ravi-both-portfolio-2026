@@ -8,23 +8,13 @@
     <span class="section-label">CONTACT</span>
     <h2 class="contact-heading" id="contact-heading">Let's talk</h2>
     <p class="contact-description">
-      Every business deserves a tech partner who speaks both business and code.
-      Let's talk about what you're building.
+      Every business deserves a tech partner who speaks both business and code. Let's talk about
+      what you're building.
     </p>
     <div class="contact-buttons">
       <IconPillButton href="mailto:{CONTACT.email}" icon="email" label="Email" />
-      <IconPillButton
-        href={CONTACT.linkedin}
-        icon="linkedin"
-        label="LinkedIn"
-        external={true}
-      />
-      <IconPillButton
-        href={CONTACT.github}
-        icon="github"
-        label="GitHub"
-        external={true}
-      />
+      <IconPillButton href={CONTACT.linkedin} icon="linkedin" label="LinkedIn" external={true} />
+      <IconPillButton href={CONTACT.github} icon="github" label="GitHub" external={true} />
     </div>
   </div>
 </section>

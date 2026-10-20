@@ -1,5 +1,6 @@
 {
-  "name": "astro-temp",
+  "name": "ravi-both-portfolio-2026",
+  "private": true,
   "type": "module",
   "version": "0.0.1",
   "packageManager": "pnpm@10.32.1",
@@ -12,7 +13,14 @@
     "preview": "astro preview",
     "astro": "astro",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "astro check --tsconfig tsconfig.astro-check.json && svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
+    "test": "vitest run",
+    "prepare": "husky",
+    "fallow": "git fetch --quiet origin dev; base=$(git merge-base origin/dev HEAD) || { echo \"pnpm fallow: no merge-base with origin/dev. Fetch dev, or rebase this branch onto it.\" >&2; exit 1; }; fallow audit --base \"$base\""
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.1",
@@ -21,17 +29,33 @@
     "svelte": "^5.54.1"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.11",
     "@chromatic-com/storybook": "^5.0.2",
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
+    "@eslint/js": "^10.0.1",
     "@storybook/addon-a11y": "^10.3.1",
     "@storybook/addon-docs": "^10.3.1",
-    "@storybook/addon-svelte-csf": "^5.0.12",
     "@storybook/addon-vitest": "^10.3.1",
     "@storybook/svelte-vite": "^10.3.1",
     "@sveltejs/vite-plugin-svelte": "^7.0.0",
     "@vitest/browser-playwright": "^4.1.0",
     "@vitest/coverage-v8": "^4.1.0",
+    "eslint": "^10.13.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-astro": "^3.2.1",
+    "eslint-plugin-svelte": "^3.23.1",
+    "fallow": "^3.34.1",
+    "globals": "^17.13.0",
+    "husky": "^9.1.7",
     "playwright": "^1.58.2",
+    "prettier": "^3.9.10",
+    "prettier-plugin-astro": "^1.1.1",
+    "prettier-plugin-svelte": "^4.1.1",
     "storybook": "^10.3.1",
+    "svelte-check": "^4.7.7",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.72.0",
     "typescript-svelte-plugin": "^0.3.50",
     "vitest": "^4.1.0"
   }

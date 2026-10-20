@@ -1,17 +1,14 @@
 import type { StorybookConfig } from '@storybook/svelte-vite';
 
 const config: StorybookConfig = {
-  "stories": [
-    "../src/**/*.mdx",
-    "../src/**/*.stories.@(js|ts)"
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|ts)'],
+  addons: [
+    '@chromatic-com/storybook',
+    '@storybook/addon-vitest',
+    '@storybook/addon-a11y',
+    '@storybook/addon-docs',
   ],
-  "addons": [
-    "@chromatic-com/storybook",
-    "@storybook/addon-vitest",
-    "@storybook/addon-a11y",
-    "@storybook/addon-docs"
-  ],
-  "framework": "@storybook/svelte-vite",
+  framework: '@storybook/svelte-vite',
   async viteFinal(config) {
     const { svelte } = await import('@sveltejs/vite-plugin-svelte');
 
@@ -29,10 +26,7 @@ const config: StorybookConfig = {
     // go through Vite's transform pipeline (where the svelte plugin runs)
     // instead of being pre-bundled by esbuild (which can't handle .svelte).
     config.optimizeDeps = config.optimizeDeps || {};
-    config.optimizeDeps.exclude = [
-      ...(config.optimizeDeps.exclude || []),
-      '@storybook/svelte',
-    ];
+    config.optimizeDeps.exclude = [...(config.optimizeDeps.exclude || []), '@storybook/svelte'];
 
     return config;
   },

@@ -64,69 +64,47 @@
 
 <section class="hero" id="hero" use:revealOnScroll={() => (visible = true)}>
   {#if visible}
-  <div class="hero-grid" in:fly={REVEAL_TRANSITION}>
-    <!-- Left column: Headline, subtitle, buttons -->
-    <div class="hero-content">
-      <!-- svelte-ignore a11y_no_static_element_interactions -->
-      <h1
-        onmouseenter={handleMouseEnter}
-        onmouseleave={handleMouseLeave}
-      >
-        Business thinking.<br />
-        <span class="accent-wrapper">
-          <span
-            class="accent"
-            class:initial={phase === 'initial'}
-            class:exiting={phase === 'exiting'}
-            class:entering={phase === 'entering'}
-          >
-            {phrases[currentIndex]}
+    <div class="hero-grid" in:fly={REVEAL_TRANSITION}>
+      <!-- Left column: Headline, subtitle, buttons -->
+      <div class="hero-content">
+        <h1 onmouseenter={handleMouseEnter} onmouseleave={handleMouseLeave}>
+          Business thinking.<br />
+          <span class="accent-wrapper">
+            <span
+              class="accent"
+              class:initial={phase === 'initial'}
+              class:exiting={phase === 'exiting'}
+              class:entering={phase === 'entering'}
+            >
+              {phrases[currentIndex]}
+            </span>
           </span>
-        </span>
-      </h1>
-      <p class="subtitle">
-        MBA in Business Process Improvement. 7+ years full-stack engineering. One person, full lifecycle.
-      </p>
-      <div class="hero-buttons">
-        <IconPillButton
-          href="mailto:{CONTACT.email}"
-          label="Email"
-          icon="email"
+        </h1>
+        <p class="subtitle">
+          MBA in Business Process Improvement. 7+ years full-stack engineering. One person, full
+          lifecycle.
+        </p>
+        <div class="hero-buttons">
+          <IconPillButton href="mailto:{CONTACT.email}" label="Email" icon="email" />
+          <IconPillButton href={CONTACT.github} label="GitHub" icon="github" external />
+          <IconPillButton href={CONTACT.linkedin} label="LinkedIn" icon="linkedin" external />
+          <IconPillButton href={CONTACT.resume} label="Resume" icon="resume" external />
+        </div>
+      </div>
+
+      <!-- Right column: Portrait with name and title -->
+      <div class="hero-portrait">
+        <img
+          src="/avatar.jpg"
+          alt="Portrait of Ravi Both"
+          class="portrait-img"
+          width="320"
+          height="320"
         />
-        <IconPillButton
-          href={CONTACT.github}
-          label="GitHub"
-          icon="github"
-          external
-        />
-        <IconPillButton
-          href={CONTACT.linkedin}
-          label="LinkedIn"
-          icon="linkedin"
-          external
-        />
-        <IconPillButton
-          href={CONTACT.resume}
-          label="Resume"
-          icon="resume"
-          external
-        />
+        <p class="portrait-name">Ravi Both</p>
+        <p class="portrait-title">Full-Stack Engineer & Tech Consultant</p>
       </div>
     </div>
-
-    <!-- Right column: Portrait with name and title -->
-    <div class="hero-portrait">
-      <img
-        src="/avatar.jpg"
-        alt="Portrait of Ravi Both"
-        class="portrait-img"
-        width="320"
-        height="320"
-      />
-      <p class="portrait-name">Ravi Both</p>
-      <p class="portrait-title">Full-Stack Engineer & Tech Consultant</p>
-    </div>
-  </div>
   {/if}
 </section>
 

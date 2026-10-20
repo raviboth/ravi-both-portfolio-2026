@@ -8,7 +8,7 @@
  */
 export function revealOnScroll(
   node: HTMLElement,
-  callback?: (() => void) | { threshold?: number; rootMargin?: string }
+  callback?: (() => void) | { threshold?: number; rootMargin?: string },
 ) {
   // Support both callback shorthand and options object
   let onReveal: (() => void) | undefined;
@@ -44,7 +44,7 @@ export function revealOnScroll(
         }
       }
     },
-    { threshold, rootMargin }
+    { threshold, rootMargin },
   );
 
   observer.observe(node);

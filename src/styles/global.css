@@ -143,7 +143,9 @@ a {
 [data-reveal] {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity var(--transition-slow), transform var(--transition-slow);
+  transition:
+    opacity var(--transition-slow),
+    transform var(--transition-slow);
 }
 
 [data-reveal].revealed {
@@ -192,7 +194,9 @@ a {
   cursor: pointer;
   border-radius: var(--radius-card);
   overflow: hidden;
-  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
   box-shadow: var(--shadow-card);
 }
 
