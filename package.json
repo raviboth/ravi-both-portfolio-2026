@@ -19,7 +19,7 @@
     "typecheck": "astro check --tsconfig tsconfig.astro-check.json && svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
     "test": "vitest run",
     "prepare": "husky",
-    "fallow": "fallow audit --base \"$(git merge-base origin/dev HEAD)\""
+    "fallow": "git fetch --quiet origin dev; base=$(git merge-base origin/dev HEAD) || { echo \"pnpm fallow: origin/dev not found. Run git fetch origin dev.\" >&2; exit 1; }; fallow audit --base \"$base\""
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.1",
