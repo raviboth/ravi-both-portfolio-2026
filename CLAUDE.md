@@ -7,7 +7,7 @@ Personal portfolio site, live at https://raviboth.com. Astro 6 with Svelte 5 com
 - `pnpm dev`, `pnpm build`, `pnpm preview`
 - `pnpm storybook`: component explorer on port 6006
 - `pnpm lint`, `pnpm format`, `pnpm format:check`
-- `pnpm typecheck`: `astro check`, then `svelte-check` (stories and `.svelte`). Warnings fail it.
+- `pnpm typecheck`: `astro check`, then `svelte-check` (stories and `.svelte`). svelte-check warnings fail it.
 - `pnpm test`: every Storybook story in headless Chromium. First run on a new clone: `pnpm exec playwright install chromium-headless-shell`
 - `pnpm fallow`: dead code, complexity and duplication added since the branch left `dev`
 
@@ -23,5 +23,5 @@ Personal portfolio site, live at https://raviboth.com. Astro 6 with Svelte 5 com
 The Obsidian vault tracks this repo. `.claude/settings.local.json` (gitignored, one per machine) grants the vault's `2. Areas/Code` folder. On this desktop that is `/var/home/ravi/obsidian/2. Areas/Code`. If the grant is missing, ask for the vault path.
 
 - Read `<granted folder>/Repos/ravi-both-portfolio-2026.md` at the start of a session for the current phase and tickets.
-- Keep its `## Phases` and `## Tickets` sections current as work lands. Write tickets in the format the comment at the top of `## Tickets` defines, and take new IDs from frontmatter `next-ticket:` (then bump it).
-- Epics and promoted tickets live in `<granted folder>/Repos/ravi-both-portfolio-2026 tickets/`.
+- Keep its `## Phases` and `## Tickets` sections current as work lands. Write tickets in the format the comment at the top of `## Tickets` defines, and take new IDs from frontmatter `next-ticket:` (then bump it). The full rules are in `<granted folder>/Ticket System - Design.md`.
+- Epics and promoted tickets live in `<granted folder>/Repos/ravi-both-portfolio-2026 tickets/`. New epic IDs come from frontmatter `next-epic:`.
