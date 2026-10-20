@@ -17,11 +17,13 @@ Portfolio site for Ravi Both — Full-Stack Engineer & Tech Consultant — showc
 Storybook is used to develop and document components in isolation before integrating them into the site.
 
 **Setup:**
+
 - `@storybook/svelte-vite` — Svelte + Vite builder for fast HMR
 - Stories colocated with components: `src/components/Nav.stories.ts`
 - Global CSS and fonts loaded via `.storybook/preview.ts` decorator
 
 **Stories to create:**
+
 - `Nav.stories.ts` — default state, mobile hamburger, with/without email button
 - `Hero.stories.ts` — desktop layout, mobile stacked layout
 - `About.stories.ts` — desktop 2-column, mobile stacked
@@ -32,6 +34,7 @@ Storybook is used to develop and document components in isolation before integra
 - `IconPillButton.stories.ts` — Email, GitHub, LinkedIn, Resume variants
 
 **Benefits:**
+
 - Visual regression testing for spring theme consistency
 - Develop responsive variants without full page context
 - Document component API and props
@@ -75,6 +78,7 @@ Storybook is used to develop and document components in isolation before integra
 ### Spring Theme (Light Only)
 
 **Colors:**
+
 - Background: soft warm white `#faf9f6`
 - Primary: sage/muted green `#6b8f71` (buttons, icons, nav links)
 - Primary dark: `#4a7050` (text links, subtitles — WCAG AA compliant)
@@ -89,10 +93,12 @@ Storybook is used to develop and document components in isolation before integra
 - Footer: dark `#2d2d2d`
 
 **Typography:**
+
 - Headings: Playfair Display (serif) — bold, used for nav links too
 - Body: DM Sans (sans-serif)
 
 **Design Touches:**
+
 - Rounded corners on cards (`12px`) and buttons (`22-26px` pill shape)
 - Gentle hover animations (slight lift on cards)
 - Smooth scroll between sections
@@ -100,6 +106,7 @@ Storybook is used to develop and document components in isolation before integra
 - 80px horizontal padding on all sections (consistent alignment)
 
 **Responsive Breakpoints:**
+
 - Desktop: 1024px+ (3-column project grid, full nav)
 - Tablet: 768px–1023px (2-column grid, hamburger nav)
 - Mobile: <768px (1-column grid, hamburger nav, stacked hero)
@@ -107,15 +114,19 @@ Storybook is used to develop and document components in isolation before integra
 ## Sections
 
 ### Nav
+
 Sticky top bar. "Ravi Both" on the left (Playfair Display), section links (About, Projects, Contact) centered (Playfair Display bold 18px), email button with envelope icon and "ravi@raviboth.com" right-aligned. 80px side padding matching sections. Hamburger menu (actual hamburger food icon) on mobile with full-screen overlay menu showing large links and social pill buttons.
 
 ### Hero
-Editorial layout. Large statement headline "Business thinking. *Engineering hands.*" on the left — "Engineering hands." in accent amber `#c47d2e`. Subtitle: "MBA in Business Process Improvement. 7+ years full-stack engineering. One person, full lifecycle." Four pill buttons with icons: Email, GitHub, LinkedIn, Resume. Right side: rounded-corner portrait photo (24px radius) with "Ravi Both" and "Full-Stack Engineer & Tech Consultant" below. Mobile: stacks vertically — avatar on top centered, name/title, headline, subtitle, 2x2 button grid.
+
+Editorial layout. Large statement headline "Business thinking. _Engineering hands._" on the left — "Engineering hands." in accent amber `#c47d2e`. Subtitle: "MBA in Business Process Improvement. 7+ years full-stack engineering. One person, full lifecycle." Four pill buttons with icons: Email, GitHub, LinkedIn, Resume. Right side: rounded-corner portrait photo (24px radius) with "Ravi Both" and "Full-Stack Engineer & Tech Consultant" below. Mobile: stacks vertically — avatar on top centered, name/title, headline, subtitle, 2x2 button grid.
 
 ### About
+
 Section label "ABOUT" + heading "In a Nutshell". Two-column layout on desktop: bio paragraph on the left ("I help small businesses, startups, and non-profits build the right technology..."), skills/languages/education on the right. Skills in white pills: React, Next.js, TypeScript, Node.js, GraphQL, AWS, React Native, Tailwind, Docker, CI/CD, Cypress, DynamoDB, Figma. Languages: English, Dutch, German. Education: MBA, M.I.U. Mobile: stacks vertically. Mint `#f0f7f1` background.
 
 ### Projects
+
 Section label "PROJECTS" + heading "Selected Work". Responsive card grid (3 columns desktop, 1 column mobile). Each card: AI-generated or real screenshot thumbnail (200px height desktop, 160px mobile), title (Playfair Display), one-line description, tech stack tags. Clicking a card opens a **gallery modal**.
 
 **Gallery Modal (Desktop):** Side-by-side — dark left panel with main screenshot, prev/next navigation arrows, "1/4" counter, thumbnail strip; white right panel with close X button, title, role, accent divider, description, key contributions, tech tags, and link buttons rendered from the project's `links` array (e.g. Live Site, GitHub, CodePen, Mockup).
@@ -125,29 +136,31 @@ Section label "PROJECTS" + heading "Selected Work". Responsive card grid (3 colu
 **Modal accessibility:** Focus trapping, ESC to close, `aria-modal="true"`, body scroll lock when open, close button visible.
 
 ### Contact
+
 Section label "CONTACT" + heading "Let's talk". Description: "Every business deserves a tech partner who speaks both business and code. Let's talk about what you're building." Three pill buttons with icons: Email, LinkedIn, GitHub. Mint `#f0f7f1` background.
 
 ### Footer
+
 Dark `#2d2d2d` bar with centered "© 2026 Ravi Both - Spring edition" in `#aaaaaa`.
 
 ## Project Data Shape
 
 ```ts
 interface ProjectLink {
-  label: string,           // "Live Site", "GitHub", "CodePen", "Mockup", "Screenshots"
-  url: string
+  label: string; // "Live Site", "GitHub", "CodePen", "Mockup", "Screenshots"
+  url: string;
 }
 
 interface Project {
-  id: string,
-  title: string,
-  shortDesc: string,
-  longDesc: string,
-  role: string,
-  contributions: string[],
-  tech: string[],
-  images: string[],        // Array for gallery lightbox
-  links: ProjectLink[]     // Flexible link array — supports Live Site, GitHub, CodePen, etc.
+  id: string;
+  title: string;
+  shortDesc: string;
+  longDesc: string;
+  role: string;
+  contributions: string[];
+  tech: string[];
+  images: string[]; // Array for gallery lightbox
+  links: ProjectLink[]; // Flexible link array — supports Live Site, GitHub, CodePen, etc.
 }
 ```
 
@@ -167,22 +180,26 @@ interface Project {
 Projects can be auto-pulled from GitHub at build time, supplemented by local hardcoded data.
 
 **Strategy:**
+
 - Fetch repos via GitHub REST API, filtered by `portfolio` topic tag
 - Local project data in `projects.ts` takes precedence (override/supplement GitHub data)
 - GitHub data provides: repo name, description, language, URL, stars — auto-generates a GitHub link in `links` array
 - Local data adds: custom title, long description, role, contributions, images, additional links (Live Site, CodePen, Mockup, etc.)
 
 **Implementation (`src/lib/github.ts`):**
+
 - Build-time fetch only — no client-side API calls
 - Local file cache (`.cache/`, 1hr TTL) during dev to stay under 60 req/hr unauthenticated limit
 - Consider GitHub PAT for production builds (higher rate limit)
 - Merge function: local fields override GitHub fields when both exist
 
 **Slug strategy:**
+
 - Repo name normalized to kebab-case by default
 - Overridable by local data `id` field
 
 **Setup required:**
+
 - Add `portfolio` topic tag to relevant GitHub repos
 - Project screenshots stored locally in `public/projects/`, not pulled from GitHub
 

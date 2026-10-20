@@ -15,11 +15,11 @@
       .map((w) => w[0])
       .join('')
       .slice(0, 2)
-      .toUpperCase()
+      .toUpperCase(),
   );
 
   let thumbnailColor = $derived(
-    index % 2 === 0 ? 'var(--color-primary)' : 'var(--color-accent-light)'
+    index % 2 === 0 ? 'var(--color-primary)' : 'var(--color-accent-light)',
   );
 </script>
 

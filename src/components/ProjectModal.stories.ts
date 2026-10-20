@@ -32,12 +32,7 @@ const multiImageProject = {
   description: 'This portfolio site.',
   longDesc:
     'This portfolio site. Designed in Figma and built with React, featuring project showcases, responsive layout, and integration with external APIs for dynamic content.',
-  contributions: [
-    'UI/UX Design',
-    'Front-End Development',
-    'API Integration',
-    'Deployment',
-  ],
+  contributions: ['UI/UX Design', 'Front-End Development', 'API Integration', 'Deployment'],
   tech: ['HTML/CSS', 'SASS', 'React', 'Figma', 'Git', 'APIs', 'Photoshop', 'Illustrator'],
   images: [
     '/projects/raviboth-com/1.webp',

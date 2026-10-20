@@ -8,7 +8,8 @@ interface Props {
 }
 
 const { title = 'Ravi Both | Full-Stack Engineer & Tech Consultant' } = Astro.props;
-const description = 'Your tech partner for growing businesses. Full-stack engineering, consulting, and modern web development by Ravi Both.';
+const description =
+  'Your tech partner for growing businesses. Full-stack engineering, consulting, and modern web development by Ravi Both.';
 const siteUrl = 'https://www.raviboth.com';
 const ogImage = `${siteUrl}/og-image.png`;
 ---
@@ -56,31 +57,31 @@ const ogImage = `${siteUrl}/og-image.png`;
     <script
       type="application/ld+json"
       set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@graph": [
+        '@context': 'https://schema.org',
+        '@graph': [
           {
-            "@type": "Person",
-            "name": "Ravi Both",
-            "jobTitle": "Full-Stack Engineer & Tech Consultant",
-            "url": "https://www.raviboth.com",
-            "email": CONTACT.email,
-            "sameAs": [
-              CONTACT.github,
-              CONTACT.linkedin
-            ]
+            '@type': 'Person',
+            name: 'Ravi Both',
+            jobTitle: 'Full-Stack Engineer & Tech Consultant',
+            url: 'https://www.raviboth.com',
+            email: CONTACT.email,
+            sameAs: [CONTACT.github, CONTACT.linkedin],
           },
           {
-            "@type": "WebSite",
-            "name": "Ravi Both",
-            "url": "https://www.raviboth.com",
-            "description": "Your tech partner for growing businesses. Full-stack engineering, consulting, and modern web development by Ravi Both."
-          }
-        ]
+            '@type': 'WebSite',
+            name: 'Ravi Both',
+            url: 'https://www.raviboth.com',
+            description:
+              'Your tech partner for growing businesses. Full-stack engineering, consulting, and modern web development by Ravi Both.',
+          },
+        ],
       })}
     />
   </head>
   <body>
-    <a href="#main-content" class="skip-link">Skip to content</a>
+    <a href="#main-content" class="skip-link">
+      Skip to content
+    </a>
     <Nav client:load />
     <main id="main-content" tabindex="-1">
       <slot />
@@ -107,7 +108,7 @@ const ogImage = `${siteUrl}/og-image.png`;
               }
             });
           },
-          { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
+          { threshold: 0.15, rootMargin: '0px 0px -50px 0px' },
         );
 
         revealElements.forEach((el) => observer.observe(el));

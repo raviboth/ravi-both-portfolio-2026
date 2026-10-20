@@ -79,7 +79,7 @@
     // Focus trap
     if (e.key === 'Tab' && modalContainerEl) {
       const focusable = modalContainerEl.querySelectorAll<HTMLElement>(
-        'button:not([disabled]), a[href], [tabindex="0"]'
+        'button:not([disabled]), a[href], [tabindex="0"]',
       );
       if (focusable.length === 0) return;
       const first = focusable[0];
@@ -196,7 +196,13 @@
             disabled={currentIndex === 0}
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <path d="M13 4l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path
+                d="M13 4l-6 6 6 6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
           </button>
           <button
@@ -206,7 +212,13 @@
             disabled={currentIndex === totalImages - 1}
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path
+                d="M7 4l6 6-6 6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
           </button>
 
@@ -242,7 +254,12 @@
           aria-label="Close modal"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            <path
+              d="M6 6l12 12M18 6L6 18"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
           </svg>
         </button>
       </div>
@@ -274,7 +291,10 @@
           {:else if link.label === 'GitHub'}
             <a class="btn btn-secondary" href={link.url} target="_blank" rel="noopener noreferrer">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M8 1C4.13 1 1 4.13 1 8c0 3.1 2 5.7 4.8 6.6.35.07.48-.15.48-.33 0-.17-.01-.72-.01-1.3-1.76.32-2.21-.43-2.35-.82-.08-.2-.42-.82-.72-.99-.24-.13-.6-.46-.01-.47.55-.01.95.51 1.08.72.63 1.06 1.63.76 2.04.58.06-.45.24-.76.44-.93-1.55-.18-3.18-.78-3.18-3.46 0-.76.27-1.39.72-1.88-.07-.17-.31-.89.07-1.85 0 0 .58-.18 1.92.72.56-.16 1.15-.24 1.75-.24.6 0 1.19.08 1.75.24 1.34-.91 1.92-.72 1.92-.72.38.96.14 1.68.07 1.85.44.49.72 1.11.72 1.88 0 2.69-1.63 3.28-3.19 3.46.25.22.47.64.47 1.29 0 .93-.01 1.68-.01 1.92 0 .18.13.4.48.33A7.01 7.01 0 0015 8c0-3.87-3.13-7-7-7z" fill="currentColor" />
+                <path
+                  d="M8 1C4.13 1 1 4.13 1 8c0 3.1 2 5.7 4.8 6.6.35.07.48-.15.48-.33 0-.17-.01-.72-.01-1.3-1.76.32-2.21-.43-2.35-.82-.08-.2-.42-.82-.72-.99-.24-.13-.6-.46-.01-.47.55-.01.95.51 1.08.72.63 1.06 1.63.76 2.04.58.06-.45.24-.76.44-.93-1.55-.18-3.18-.78-3.18-3.46 0-.76.27-1.39.72-1.88-.07-.17-.31-.89.07-1.85 0 0 .58-.18 1.92.72.56-.16 1.15-.24 1.75-.24.6 0 1.19.08 1.75.24 1.34-.91 1.92-.72 1.92-.72.38.96.14 1.68.07 1.85.44.49.72 1.11.72 1.88 0 2.69-1.63 3.28-3.19 3.46.25.22.47.64.47 1.29 0 .93-.01 1.68-.01 1.92 0 .18.13.4.48.33A7.01 7.01 0 0015 8c0-3.87-3.13-7-7-7z"
+                  fill="currentColor"
+                />
               </svg>
               View on GitHub
             </a>
@@ -302,14 +322,18 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 300ms ease, visibility 0s linear 300ms;
+    transition:
+      opacity 300ms ease,
+      visibility 0s linear 300ms;
   }
 
   .modal-backdrop.open {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transition: opacity 300ms ease, visibility 0s;
+    transition:
+      opacity 300ms ease,
+      visibility 0s;
   }
 
   /* Container */
@@ -322,7 +346,9 @@
     overflow: hidden;
     transform: translateY(30px);
     opacity: 0;
-    transition: transform 400ms ease-out, opacity 400ms ease-out;
+    transition:
+      transform 400ms ease-out,
+      opacity 400ms ease-out;
   }
 
   .modal-backdrop.open .modal-container {
@@ -490,7 +516,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 200ms ease, color 200ms ease;
+    transition:
+      background 200ms ease,
+      color 200ms ease;
     flex-shrink: 0;
   }
 
@@ -583,7 +611,9 @@
     font-weight: 600;
     font-size: 0.875rem;
     text-decoration: none;
-    transition: background var(--transition-base), transform var(--transition-fast);
+    transition:
+      background var(--transition-base),
+      transform var(--transition-fast);
   }
 
   .btn-secondary {

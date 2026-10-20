@@ -135,7 +135,9 @@
     font-size: 0.95rem;
     font-weight: 600;
     text-decoration: none;
-    transition: background-color var(--transition-fast), transform var(--transition-fast);
+    transition:
+      background-color var(--transition-fast),
+      transform var(--transition-fast);
   }
 
   .pill-button:hover {
