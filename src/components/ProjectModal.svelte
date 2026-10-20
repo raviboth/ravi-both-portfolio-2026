@@ -153,7 +153,6 @@
   let hasImages = $derived(totalImages > 0);
 </script>
 
-<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <div
   class="modal-backdrop"
   class:open={isOpen}
@@ -214,7 +213,7 @@
           <div class="gallery-footer">
             <span class="counter">{currentIndex + 1} / {totalImages}</span>
             <div class="thumbnail-strip" role="tablist">
-              {#each project?.images ?? [] as thumb, i}
+              {#each project?.images ?? [] as thumb, i (thumb)}
                 <button
                   class="thumbnail"
                   class:active={i === currentIndex}
@@ -254,7 +253,7 @@
       {#if project?.contributions?.length}
         <h3 class="contributions-heading">Key Contributions</h3>
         <ul class="contributions-list">
-          {#each project.contributions as item}
+          {#each project.contributions as item (item)}
             <li>{item}</li>
           {/each}
         </ul>
@@ -262,14 +261,14 @@
 
       {#if project?.tech?.length}
         <div class="tech-tags">
-          {#each project.tech as tag}
+          {#each project.tech as tag (tag)}
             <span class="tech-tag">{tag}</span>
           {/each}
         </div>
       {/if}
 
       <div class="action-buttons">
-        {#each project?.links ?? [] as link}
+        {#each project?.links ?? [] as link (link.url)}
           {#if link.label === 'Live Site'}
             <IconPillButton href={link.url} label="View Live Site" icon="external" external />
           {:else if link.label === 'GitHub'}

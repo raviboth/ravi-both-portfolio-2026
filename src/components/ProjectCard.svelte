@@ -44,7 +44,7 @@
     <h3 class="card-title">{project.title}</h3>
     <p class="card-desc">{project.shortDesc}</p>
     <div class="card-tags">
-      {#each project.tech as tag}
+      {#each project.tech as tag (tag)}
         <span class="tag">{tag}</span>
       {/each}
     </div>

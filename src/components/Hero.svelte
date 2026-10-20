@@ -67,7 +67,6 @@
   <div class="hero-grid" in:fly={REVEAL_TRANSITION}>
     <!-- Left column: Headline, subtitle, buttons -->
     <div class="hero-content">
-      <!-- svelte-ignore a11y_no_static_element_interactions -->
       <h1
         onmouseenter={handleMouseEnter}
         onmouseleave={handleMouseLeave}

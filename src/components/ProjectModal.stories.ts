@@ -66,7 +66,7 @@ const noImagesProject = {
  * on story teardown to prevent state leaking between stories.
  */
 function openModal(project: typeof defaultProject) {
-  return ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  return () => {
     activeProject.set(project);
 
     // Return a cleanup function that resets the store when the story unmounts
