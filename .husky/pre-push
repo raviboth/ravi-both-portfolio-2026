@@ -2,9 +2,14 @@
 
 # Skip pushes that only delete branches or push tags: no code changes.
 code_push=0
+head_sha=$(git rev-parse HEAD)
 while read -r local_ref local_sha remote_ref remote_sha; do
   case "$remote_ref" in refs/tags/*) continue ;; esac
-  case "$local_sha" in *[!0]*) code_push=1 ;; esac
+  case "$local_sha" in *[!0]*) ;; *) continue ;; esac
+  code_push=1
+  if [ "$local_sha" != "$head_sha" ]; then
+    echo "pre-push: warning: $local_ref is not the checked-out commit; checks run on the working tree, not on it"
+  fi
 done
 [ "$code_push" -eq 1 ] || exit 0
 

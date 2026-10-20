@@ -71,8 +71,9 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/setup
-      # On a release PR (dev to main) this lints every commit dev adds, which also
-      # catches anything pushed to dev without a PR.
+      # On a release PR (dev to main) this lints every commit dev adds with the release
+      # config: header and type rules, looser lengths. That also covers commits pushed to
+      # dev without a PR, for headers and types only.
       - name: Lint commit messages
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
