@@ -19,9 +19,19 @@ export const GitHub: Story = {
 };
 
 export const LinkedIn: Story = {
-  args: { href: 'https://linkedin.com/in/raviboth', label: 'LinkedIn', icon: 'linkedin', external: true },
+  args: {
+    href: 'https://linkedin.com/in/raviboth',
+    label: 'LinkedIn',
+    icon: 'linkedin',
+    external: true,
+  },
 };
 
 export const Resume: Story = {
-  args: { href: 'https://raviboth.com/Both, Ravi - resume.pdf', label: 'Resume', icon: 'resume', external: true },
+  args: {
+    href: 'https://raviboth.com/Both, Ravi - resume.pdf',
+    label: 'Resume',
+    icon: 'resume',
+    external: true,
+  },
 };

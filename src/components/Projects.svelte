@@ -22,17 +22,21 @@
   }
 </script>
 
-<section id="projects" class="section-padding projects-section" use:revealOnScroll={() => (visible = true)}>
+<section
+  id="projects"
+  class="section-padding projects-section"
+  use:revealOnScroll={() => (visible = true)}
+>
   {#if visible}
-  <div in:fly={REVEAL_TRANSITION}>
-    <span class="section-label">PROJECTS</span>
-    <h2 class="section-heading">Selected Work</h2>
-    <div class="projects-grid">
-      {#each projects as project, i (project.id)}
-        <ProjectCard {project} index={i} onSelect={handleSelectProject} />
-      {/each}
+    <div in:fly={REVEAL_TRANSITION}>
+      <span class="section-label">PROJECTS</span>
+      <h2 class="section-heading">Selected Work</h2>
+      <div class="projects-grid">
+        {#each projects as project, i (project.id)}
+          <ProjectCard {project} index={i} onSelect={handleSelectProject} />
+        {/each}
+      </div>
     </div>
-  </div>
   {/if}
 </section>
 

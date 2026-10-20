@@ -1,0 +1,8 @@
+dist/
+.astro/
+.cache/
+storybook-static/
+node_modules/
+pnpm-lock.yaml
+public/
+docs/plans/*.pen

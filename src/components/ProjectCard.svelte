@@ -15,11 +15,11 @@
       .map((w) => w[0])
       .join('')
       .slice(0, 2)
-      .toUpperCase()
+      .toUpperCase(),
   );
 
   let thumbnailColor = $derived(
-    index % 2 === 0 ? 'var(--color-primary)' : 'var(--color-accent-light)'
+    index % 2 === 0 ? 'var(--color-primary)' : 'var(--color-accent-light)',
   );
 </script>
 
@@ -44,7 +44,7 @@
     <h3 class="card-title">{project.title}</h3>
     <p class="card-desc">{project.shortDesc}</p>
     <div class="card-tags">
-      {#each project.tech as tag}
+      {#each project.tech as tag, i (i)}
         <span class="tag">{tag}</span>
       {/each}
     </div>
