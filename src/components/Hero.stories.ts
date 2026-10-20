@@ -14,7 +14,7 @@ const meta = {
       ],
     },
   },
-} satisfies Meta<Hero>;
+} satisfies Meta<typeof Hero>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -5,7 +5,7 @@ const meta = {
   title: 'Components/IconPillButton',
   component: IconPillButton,
   parameters: { layout: 'centered' },
-} satisfies Meta<IconPillButton>;
+} satisfies Meta<typeof IconPillButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

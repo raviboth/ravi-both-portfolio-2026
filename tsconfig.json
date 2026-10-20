@@ -1,9 +1,8 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     },
     "plugins": [
       {
@@ -11,6 +10,6 @@
       }
     ]
   },
-  "include": [".astro/types.d.ts", "**/*"],
+  "include": [".astro/types.d.ts", "**/*", ".storybook/**/*"],
   "exclude": ["dist"]
 }
