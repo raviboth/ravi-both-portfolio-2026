@@ -17,13 +17,13 @@ export const Default: Story = {};
 export const Mobile: Story = {
   globals: { viewport: { value: 'mobile1', isRotated: false } },
   parameters: {
-    chromatic: { viewports: [375] },
+    chromatic: { viewports: [320] },
   },
 };
 
 export const Tablet: Story = {
   globals: { viewport: { value: 'tablet', isRotated: false } },
   parameters: {
-    chromatic: { viewports: [768] },
+    chromatic: { viewports: [834] },
   },
 };

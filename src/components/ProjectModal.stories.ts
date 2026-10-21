@@ -81,7 +81,7 @@ export const NoImages: Story = {
   },
 };
 
-/** Mobile: 375px viewport showing full-screen column layout */
+/** Mobile: 320px viewport showing full-screen column layout */
 export const Mobile: Story = {
   beforeEach: openModal(defaultProject),
   play: async ({ canvasElement }) => {
@@ -89,6 +89,6 @@ export const Mobile: Story = {
   },
   globals: { viewport: { value: 'mobile1', isRotated: false } },
   parameters: {
-    chromatic: { viewports: [375] },
+    chromatic: { viewports: [320] },
   },
 };

@@ -32,11 +32,11 @@ export const LongTechList: Story = {
   args: { project: longestTechProject, index: 0 },
 };
 
-/** Mobile: 375px viewport */
+/** Mobile: 320px viewport */
 export const Mobile: Story = {
   args: { project: projects[0], index: 0 },
   globals: { viewport: { value: 'mobile1', isRotated: false } },
   parameters: {
-    chromatic: { viewports: [375] },
+    chromatic: { viewports: [320] },
   },
 };

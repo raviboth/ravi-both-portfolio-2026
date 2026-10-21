@@ -31,20 +31,20 @@ export const Default: Story = {
   play: forceReveal,
 };
 
-/** Mobile viewport (375px): single-column layout */
+/** Mobile viewport (320px): single-column layout */
 export const Mobile: Story = {
   play: forceReveal,
   globals: { viewport: { value: 'mobile1', isRotated: false } },
   parameters: {
-    chromatic: { viewports: [375] },
+    chromatic: { viewports: [320] },
   },
 };
 
-/** Tablet viewport (768px): 2-column layout */
+/** Tablet viewport (834px): 2-column layout */
 export const Tablet: Story = {
   play: forceReveal,
   globals: { viewport: { value: 'tablet', isRotated: false } },
   parameters: {
-    chromatic: { viewports: [768] },
+    chromatic: { viewports: [834] },
   },
 };
