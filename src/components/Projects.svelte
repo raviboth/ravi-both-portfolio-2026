@@ -44,7 +44,7 @@
 
 <style>
   .projects-section {
-    background-color: var(--color-bg);
+    background-color: var(--color-surface);
     padding: var(--space-section-y) var(--space-section-x);
     min-height: 300px;
   }

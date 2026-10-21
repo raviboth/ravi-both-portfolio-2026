@@ -130,7 +130,7 @@
     border-radius: 22px;
     background-color: var(--color-primary-dark);
     border: 1.5px solid transparent;
-    color: #ffffff;
+    color: var(--color-on-primary);
     font-family: var(--font-body);
     font-size: 0.95rem;
     font-weight: 600;

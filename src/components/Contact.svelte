@@ -21,7 +21,7 @@
 
 <style>
   .contact {
-    background-color: var(--color-mint-bg);
+    background-color: var(--color-surface-alt);
     padding: var(--space-section-y) var(--space-section-x);
   }
 
