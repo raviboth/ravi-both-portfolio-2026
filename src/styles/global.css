@@ -38,6 +38,8 @@ select {
    ============================================================================ */
 
 :root {
+  color-scheme: light;
+
   /* Colors: surfaces */
   --color-surface: #faf9f6;
   --color-surface-alt: #f0f7f1;
@@ -54,6 +56,7 @@ select {
   --color-accent: #c47d2e;
   --color-accent-dark: #a86008;
   --color-accent-light: #f4a261;
+  --color-link: var(--color-primary-dark);
 
   /* Colors: text */
   --color-text: #2d2d2d;
@@ -112,6 +115,36 @@ select {
   /* --bp-tablet: 1024px */
 }
 
+/* Dark theme. Set by the inline script in Layout.astro, before first paint.
+   Only tokens that change are listed; the media palette is dark already. */
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-surface: #161a17;
+  --color-surface-alt: #1c241e;
+  --color-surface-raised: #232b25;
+  --color-footer-bg: #0e110f;
+  --color-overlay: rgba(0, 0, 0, 0.75);
+  --color-hover-tint: rgba(255, 255, 255, 0.08);
+
+  --color-accent: #e0954a;
+  --color-accent-dark: #eba564;
+  --color-link: #9fc7a5;
+
+  --color-text: #ecebe6;
+  --color-text-secondary: #a7aea8;
+  --color-footer-text: #8a918b;
+  --color-on-thumbnail: rgba(255, 255, 255, 0.8);
+
+  --color-pill-bg: #2c362f;
+  --color-tag-bg: #2f3d32;
+
+  --hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-card-active: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --shadow-nav: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
 /* ============================================================================
    BASE STYLES
    ============================================================================ */
@@ -137,7 +170,7 @@ h6 {
 }
 
 a {
-  color: var(--color-primary-dark);
+  color: var(--color-link);
   text-decoration: none;
 }
 

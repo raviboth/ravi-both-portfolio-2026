@@ -539,7 +539,7 @@
   .project-role {
     font-family: var(--font-body);
     font-size: 1rem;
-    color: var(--color-primary-dark);
+    color: var(--color-link);
     margin: 0 0 16px 0;
   }
 
@@ -618,7 +618,7 @@
 
   .btn-secondary {
     background: transparent;
-    color: var(--color-primary-dark);
+    color: var(--color-link);
     border: none;
     padding: 10px 0;
   }
