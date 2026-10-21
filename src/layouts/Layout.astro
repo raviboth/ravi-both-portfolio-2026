@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.svelte';
 import { CONTACT } from '../data/constants';
+import { THEME_COLORS, THEME_STORAGE_KEY } from '../lib/theme';
 
 interface Props {
   title?: string;
@@ -21,8 +22,29 @@ const ogImage = `${siteUrl}/og-image.png`;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    {/* theme-color takes a literal, keep in sync with --color-surface */}
-    <meta name="theme-color" content="#faf9f6" />
+    <meta name="theme-color" content={THEME_COLORS.light} />
+    {/* Runs before first paint: a stored choice wins, else follow the OS setting */}
+    <script is:inline define:vars={{ storageKey: THEME_STORAGE_KEY, colors: THEME_COLORS }}>
+      const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const stored = () => {
+        try {
+          const value = localStorage.getItem(storageKey);
+          return value === 'light' || value === 'dark' ? value : null;
+        } catch {
+          return null;
+        }
+      };
+      const apply = (theme) => {
+        document.documentElement.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', colors[theme]);
+      };
+      apply(stored() ?? (darkQuery.matches ? 'dark' : 'light'));
+      darkQuery.addEventListener('change', (e) => {
+        if (!stored() && !('themeChosen' in document.documentElement.dataset)) {
+          apply(e.matches ? 'dark' : 'light');
+        }
+      });
+    </script>
     <link rel="canonical" href={siteUrl} />
 
     <!-- Favicons -->

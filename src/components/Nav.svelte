@@ -3,6 +3,7 @@
   import { tick } from 'svelte';
   import { smoothScroll } from '../lib/actions/smoothScroll';
   import IconPillButton from './IconPillButton.svelte';
+  import ThemeToggle from './ThemeToggle.svelte';
   import { CONTACT } from '../data/constants';
 
   let scrolled = $state(false);
@@ -71,36 +72,40 @@
       <a href="#contact">Contact</a>
     </div>
 
-    <!-- Desktop email button -->
-    <div class="email-button-wrapper">
-      <IconPillButton href="mailto:{CONTACT.email}" label={CONTACT.email} icon="email" />
-    </div>
+    <div class="nav-actions">
+      <ThemeToggle />
 
-    <!-- Mobile hamburger button -->
-    <button
-      class="hamburger"
-      bind:this={hamburgerBtn}
-      onclick={openMenu}
-      aria-label="Open menu"
-      aria-expanded={menuOpen}
-    >
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <!-- Top bun -->
-        <path d="M6 13c0-5 4-8 10-8s10 3 10 8H6z" fill="currentColor" opacity="0.85" />
-        <!-- Lettuce -->
-        <path
-          d="M5 14c1.5 1 3-0.5 5 0.5s3 0 5-0.5 3 1 5 0.5 3-1.5 5-0.5 2 1 2 1"
-          stroke="currentColor"
-          stroke-width="1.5"
-          fill="none"
-          stroke-linecap="round"
-        />
-        <!-- Patty -->
-        <rect x="5" y="17" width="22" height="4" rx="2" fill="currentColor" opacity="0.7" />
-        <!-- Bottom bun -->
-        <path d="M6 23h20c0 3-4 5-10 5S6 26 6 23z" fill="currentColor" opacity="0.85" />
-      </svg>
-    </button>
+      <!-- Desktop email button -->
+      <div class="email-button-wrapper">
+        <IconPillButton href="mailto:{CONTACT.email}" label={CONTACT.email} icon="email" />
+      </div>
+
+      <!-- Mobile hamburger button -->
+      <button
+        class="hamburger"
+        bind:this={hamburgerBtn}
+        onclick={openMenu}
+        aria-label="Open menu"
+        aria-expanded={menuOpen}
+      >
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <!-- Top bun -->
+          <path d="M6 13c0-5 4-8 10-8s10 3 10 8H6z" fill="currentColor" opacity="0.85" />
+          <!-- Lettuce -->
+          <path
+            d="M5 14c1.5 1 3-0.5 5 0.5s3 0 5-0.5 3 1 5 0.5 3-1.5 5-0.5 2 1 2 1"
+            stroke="currentColor"
+            stroke-width="1.5"
+            fill="none"
+            stroke-linecap="round"
+          />
+          <!-- Patty -->
+          <rect x="5" y="17" width="22" height="4" rx="2" fill="currentColor" opacity="0.7" />
+          <!-- Bottom bun -->
+          <path d="M6 23h20c0 3-4 5-10 5S6 26 6 23z" fill="currentColor" opacity="0.85" />
+        </svg>
+      </button>
+    </div>
   </div>
 </nav>
 
@@ -186,7 +191,7 @@
     font-family: var(--font-heading);
     font-size: 1.125rem;
     font-weight: 700;
-    color: var(--color-primary-dark);
+    color: var(--color-link);
     text-decoration: none;
     position: relative;
     transition: color var(--transition-base);
@@ -204,11 +209,18 @@
   }
 
   .nav-links a:hover {
-    color: var(--color-primary);
+    color: var(--color-link-hover);
   }
 
   .nav-links a:hover::after {
     width: 100%;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
   }
 
   .email-button-wrapper {
@@ -281,7 +293,7 @@
   }
 
   .overlay-links a:hover {
-    color: var(--color-primary);
+    color: var(--color-link-hover);
   }
 
   .social-pills {
