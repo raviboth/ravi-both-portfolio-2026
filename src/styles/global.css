@@ -57,7 +57,7 @@ select {
   --color-accent-dark: #a15c08;
   --color-accent-light: #f4a261;
   --color-link: var(--color-primary-dark);
-  --color-link-hover: var(--color-primary);
+  --color-link-hover: #34523a;
 
   /* Colors: text */
   --color-text: #2d2d2d;
