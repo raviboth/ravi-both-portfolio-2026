@@ -111,7 +111,7 @@
 <style>
   .hero {
     padding: 100px var(--space-section-x) var(--space-section-y) var(--space-section-x);
-    background-color: var(--color-bg);
+    background-color: var(--color-surface);
     min-height: 400px;
   }
 

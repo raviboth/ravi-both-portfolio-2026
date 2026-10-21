@@ -154,8 +154,8 @@
   }
 
   .nav.scrolled {
-    background-color: var(--color-bg);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-nav);
   }
 
   .nav-inner {
@@ -230,7 +230,7 @@
     position: fixed;
     inset: 0;
     z-index: 200;
-    background-color: var(--color-bg);
+    background-color: var(--color-surface);
     display: flex;
     flex-direction: column;
     align-items: center;
