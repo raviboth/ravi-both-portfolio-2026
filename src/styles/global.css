@@ -64,10 +64,10 @@ select {
   --color-text-secondary: #555555;
   --color-footer-text: #aaaaaa;
   --color-on-primary-dark: #ffffff;
-  --color-on-thumbnail: rgba(255, 255, 255, 0.7);
+  /* Initials on fallback thumbnails (primary and accent-light, both themes): >= 3:1 */
+  --color-on-thumbnail: rgba(0, 0, 0, 0.7);
 
-  /* Colors: tag and pill backgrounds */
-  --color-pill-bg: #ffffff;
+  /* Colors: tag backgrounds */
   --color-tag-bg: #e8f5e9;
 
   /* Colors: project modal gallery (stays dark in every theme) */
@@ -136,9 +136,7 @@ select {
   --color-text: #ecebe6;
   --color-text-secondary: #a7aea8;
   --color-footer-text: #8a918b;
-  --color-on-thumbnail: rgba(255, 255, 255, 0.8);
 
-  --color-pill-bg: #2c362f;
   --color-tag-bg: #2f3d32;
 
   --hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);

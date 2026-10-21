@@ -24,19 +24,19 @@ export const Scrolled: Story = {
   },
 };
 
-/** Mobile: 375px viewport showing hamburger icon */
+/** Mobile: 320px viewport showing hamburger icon */
 export const Mobile: Story = {
+  globals: { viewport: { value: 'mobile1', isRotated: false } },
   parameters: {
-    viewport: { defaultViewport: 'mobile1' },
-    chromatic: { viewports: [375] },
+    chromatic: { viewports: [320] },
   },
 };
 
-/** MobileMenuOpen: 375px viewport with overlay open via play function */
+/** MobileMenuOpen: 320px viewport with overlay open via play function */
 export const MobileMenuOpen: Story = {
+  globals: { viewport: { value: 'mobile1', isRotated: false } },
   parameters: {
-    viewport: { defaultViewport: 'mobile1' },
-    chromatic: { viewports: [375] },
+    chromatic: { viewports: [320] },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
