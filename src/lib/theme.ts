@@ -12,11 +12,9 @@ export function currentTheme(): Theme {
   return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
 }
 
-/** Apply a theme and remember it, so it wins over the OS setting on later visits. */
+/** Apply a theme and remember it for later visits. */
 export function setTheme(theme: Theme) {
   document.documentElement.dataset.theme = theme;
-  // Tells the OS-change listener in Layout.astro to stand down, even when storage is blocked.
-  document.documentElement.dataset.themeChosen = '';
   document.querySelector('meta[name="theme-color"]')?.setAttribute('content', THEME_COLORS[theme]);
   try {
     localStorage.setItem(THEME_STORAGE_KEY, theme);

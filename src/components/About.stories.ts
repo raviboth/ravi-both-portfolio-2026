@@ -6,13 +6,6 @@ const meta = {
   component: About,
   parameters: {
     layout: 'fullscreen',
-    backgrounds: {
-      default: 'mint',
-      values: [
-        { name: 'mint', value: '#f0f7f1' },
-        { name: 'white', value: '#ffffff' },
-      ],
-    },
   },
 } satisfies Meta<typeof About>;
 
