@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { fly } from 'svelte/transition';
   import { onMount } from 'svelte';
   import { revealOnScroll } from '../lib/actions/revealOnScroll';
+  import { reveal } from '../lib/transitions/reveal';
   import IconPillButton from './IconPillButton.svelte';
   import { CONTACT, REVEAL_TRANSITION } from '../data/constants';
 
@@ -64,7 +64,7 @@
 
 <section class="hero" id="hero" use:revealOnScroll={() => (visible = true)}>
   {#if visible}
-    <div class="hero-grid" in:fly={REVEAL_TRANSITION}>
+    <div class="hero-grid" in:reveal={REVEAL_TRANSITION}>
       <!-- Left column: Headline, subtitle, buttons -->
       <div class="hero-content">
         <h1 onmouseenter={handleMouseEnter} onmouseleave={handleMouseLeave}>

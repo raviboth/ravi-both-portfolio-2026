@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { fly } from 'svelte/transition';
   import { revealOnScroll } from '../lib/actions/revealOnScroll';
+  import { reveal } from '../lib/transitions/reveal';
   import type { Project } from '../data/projects';
   import ProjectCard from './ProjectCard.svelte';
   import ProjectModal from './ProjectModal.svelte';
@@ -28,7 +28,7 @@
   use:revealOnScroll={() => (visible = true)}
 >
   {#if visible}
-    <div in:fly={REVEAL_TRANSITION}>
+    <div in:reveal={REVEAL_TRANSITION}>
       <span class="section-label">PROJECTS</span>
       <h2 class="section-heading">Selected Work</h2>
       <div class="projects-grid">
