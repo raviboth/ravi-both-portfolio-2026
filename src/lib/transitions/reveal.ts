@@ -7,5 +7,5 @@ import { fly, type FlyParams } from 'svelte/transition';
  */
 export function reveal(node: Element, params: FlyParams = {}) {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  return fly(node, reduce ? { ...params, x: 0, y: 0, delay: 0, duration: 0 } : params);
+  return fly(node, reduce ? { ...params, delay: 0, duration: 0 } : params);
 }
