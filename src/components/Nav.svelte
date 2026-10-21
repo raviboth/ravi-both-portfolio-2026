@@ -209,7 +209,7 @@
   }
 
   .nav-links a:hover {
-    color: var(--color-primary);
+    color: var(--color-link-hover);
   }
 
   .nav-links a:hover::after {
@@ -293,7 +293,7 @@
   }
 
   .overlay-links a:hover {
-    color: var(--color-primary);
+    color: var(--color-link-hover);
   }
 
   .social-pills {

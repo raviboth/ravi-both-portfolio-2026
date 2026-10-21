@@ -40,7 +40,9 @@ const ogImage = `${siteUrl}/og-image.png`;
       };
       apply(stored() ?? (darkQuery.matches ? 'dark' : 'light'));
       darkQuery.addEventListener('change', (e) => {
-        if (!stored()) apply(e.matches ? 'dark' : 'light');
+        if (!stored() && !('themeChosen' in document.documentElement.dataset)) {
+          apply(e.matches ? 'dark' : 'light');
+        }
       });
     </script>
     <link rel="canonical" href={siteUrl} />
