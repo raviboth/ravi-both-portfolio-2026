@@ -591,7 +591,7 @@
     font-size: 0.875rem;
     padding: 4px 12px;
     border-radius: 999px;
-    background: var(--color-tag-on-raised);
+    background: var(--color-tag-bg);
     color: var(--color-text);
     margin: 0 8px 8px 0;
   }

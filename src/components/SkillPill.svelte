@@ -7,7 +7,7 @@
 <style>
   .skill-pill {
     display: inline-block;
-    background-color: var(--color-tag-on-surface-alt);
+    background-color: var(--color-pill-bg);
     border-radius: var(--radius-pill);
     padding: 5px 12px;
     font-family: var(--font-body);

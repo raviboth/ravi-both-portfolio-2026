@@ -43,6 +43,8 @@ select {
   --color-surface-alt: #f0f7f1;
   --color-surface-raised: #ffffff;
   --color-footer-bg: #2d2d2d;
+
+  /* Colors: overlays, layered over a surface */
   --color-overlay: rgba(0, 0, 0, 0.6);
   --color-hover-tint: rgba(0, 0, 0, 0.05);
 
@@ -60,9 +62,9 @@ select {
   --color-on-primary-dark: #ffffff;
   --color-on-thumbnail: rgba(255, 255, 255, 0.7);
 
-  /* Colors: tags, named by the surface they sit on */
-  --color-tag-on-surface-alt: #ffffff;
-  --color-tag-on-raised: #e8f5e9;
+  /* Colors: tag and pill backgrounds */
+  --color-pill-bg: #ffffff;
+  --color-tag-bg: #e8f5e9;
 
   /* Colors: project modal gallery (stays dark in every theme) */
   --color-media-bg: #1a1a1a;
@@ -90,6 +92,8 @@ select {
   /* Hover Effects */
   --hover-lift: -4px;
   --hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  /* Shadows */
   --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
   --shadow-card-active: 0 4px 16px rgba(0, 0, 0, 0.1);
   --shadow-nav: 0 1px 4px rgba(0, 0, 0, 0.08);
@@ -289,7 +293,7 @@ a {
 
 .tag {
   display: inline-block;
-  background-color: var(--color-tag-on-raised);
+  background-color: var(--color-tag-bg);
   border-radius: var(--radius-pill);
   padding: 4px 12px;
   font-family: var(--font-body);
