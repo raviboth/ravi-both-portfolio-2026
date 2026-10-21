@@ -34,8 +34,8 @@ export const Default: Story = {
 /** Mobile viewport (375px): single-column layout */
 export const Mobile: Story = {
   play: forceReveal,
+  globals: { viewport: { value: 'mobile1', isRotated: false } },
   parameters: {
-    viewport: { defaultViewport: 'mobile1' },
     chromatic: { viewports: [375] },
   },
 };
@@ -43,8 +43,8 @@ export const Mobile: Story = {
 /** Tablet viewport (768px): 2-column layout */
 export const Tablet: Story = {
   play: forceReveal,
+  globals: { viewport: { value: 'tablet', isRotated: false } },
   parameters: {
-    viewport: { defaultViewport: 'tablet' },
     chromatic: { viewports: [768] },
   },
 };

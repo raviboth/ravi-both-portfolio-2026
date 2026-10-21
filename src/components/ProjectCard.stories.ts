@@ -35,8 +35,8 @@ export const LongTechList: Story = {
 /** Mobile: 375px viewport */
 export const Mobile: Story = {
   args: { project: projects[0], index: 0 },
+  globals: { viewport: { value: 'mobile1', isRotated: false } },
   parameters: {
-    viewport: { defaultViewport: 'mobile1' },
     chromatic: { viewports: [375] },
   },
 };

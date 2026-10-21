@@ -87,8 +87,8 @@ export const Mobile: Story = {
   play: async ({ canvasElement }) => {
     await openDialog(canvasElement);
   },
+  globals: { viewport: { value: 'mobile1', isRotated: false } },
   parameters: {
-    viewport: { defaultViewport: 'mobile1' },
     chromatic: { viewports: [375] },
   },
 };
