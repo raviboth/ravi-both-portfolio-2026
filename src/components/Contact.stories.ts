@@ -6,13 +6,6 @@ const meta = {
   component: Contact,
   parameters: {
     layout: 'fullscreen',
-    backgrounds: {
-      default: 'mint',
-      values: [
-        { name: 'mint', value: '#f0f7f1' },
-        { name: 'warm-white', value: '#faf9f6' },
-      ],
-    },
   },
 } satisfies Meta<typeof Contact>;
 
