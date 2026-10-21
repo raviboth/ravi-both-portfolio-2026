@@ -47,3 +47,13 @@ export const Toggles: Story = {
     await waitFor(() => expect(button).toHaveAttribute('aria-pressed', 'false'));
   },
 };
+
+/** Storybook's theme toolbar set to dark: the toggle reads the theme from the root. */
+export const DarkGlobal: Story = {
+  globals: { theme: 'dark' },
+  play: async ({ canvasElement }) => {
+    const button = within(canvasElement).getByRole('button', { name: 'Dark theme' });
+    await expect(document.documentElement.dataset.theme).toBe('dark');
+    await waitFor(() => expect(button).toHaveAttribute('aria-pressed', 'true'));
+  },
+};

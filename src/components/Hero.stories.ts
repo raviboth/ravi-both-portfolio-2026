@@ -6,13 +6,6 @@ const meta = {
   component: Hero,
   parameters: {
     layout: 'fullscreen',
-    backgrounds: {
-      default: 'warm-white',
-      values: [
-        { name: 'warm-white', value: '#faf9f6' },
-        { name: 'white', value: '#ffffff' },
-      ],
-    },
   },
 } satisfies Meta<typeof Hero>;
 
