@@ -17,6 +17,7 @@ const meta = {
     return () => {
       if (previousTheme) root.dataset.theme = previousTheme;
       else delete root.dataset.theme;
+      delete root.dataset.themeChosen;
       if (previousStored) localStorage.setItem(THEME_STORAGE_KEY, previousStored);
       else localStorage.removeItem(THEME_STORAGE_KEY);
     };
