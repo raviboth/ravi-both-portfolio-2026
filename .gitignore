@@ -40,3 +40,7 @@ designs/
 
 # Atelier project state
 .atelier/
+
+# Vitest browser-mode failure screenshots
+__screenshots__/
+.vitest-attachments/

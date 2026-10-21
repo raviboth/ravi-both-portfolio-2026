@@ -1,35 +1,19 @@
 <script lang="ts">
-  import { fly } from 'svelte/transition';
   import { onMount } from 'svelte';
+  import { reveal } from '../lib/transitions/reveal';
 
   let visible = $state(false);
-  let reducedMotion = $state(false);
 
   onMount(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    reducedMotion = mq.matches;
     visible = true;
-
-    function onChange(e: MediaQueryListEvent) {
-      reducedMotion = e.matches;
-    }
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
   });
-
-  const leftTransition = $derived(
-    reducedMotion ? { y: 0, duration: 0 } : { y: 40, duration: 600, delay: 0 },
-  );
-  const rightTransition = $derived(
-    reducedMotion ? { y: 0, duration: 0 } : { y: 40, duration: 600, delay: 150 },
-  );
 </script>
 
 <section class="about" id="about">
   <span class="section-label">ABOUT</span>
   <div class="about-grid">
     {#if visible}
-      <div class="about-bio" in:fly={leftTransition}>
+      <div class="about-bio" in:reveal={{ y: 40, duration: 600 }}>
         <h2>In a Nutshell</h2>
         <p>
           I'm a full-stack engineer with an MBA in Business Process Improvement and 7+ years of
@@ -51,7 +35,7 @@
           and <span class="accent">Storybook</span>.
         </p>
       </div>
-      <div class="about-details" in:fly={rightTransition}>
+      <div class="about-details" in:reveal={{ y: 40, duration: 600, delay: 150 }}>
         <h2>The Specs</h2>
         <div class="detail-group">
           <h3>Education</h3>
