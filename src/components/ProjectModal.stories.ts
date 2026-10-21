@@ -81,14 +81,14 @@ export const NoImages: Story = {
   },
 };
 
-/** Mobile: 375px viewport showing full-screen column layout */
+/** Mobile: 320px viewport showing full-screen column layout */
 export const Mobile: Story = {
   beforeEach: openModal(defaultProject),
   play: async ({ canvasElement }) => {
     await openDialog(canvasElement);
   },
+  globals: { viewport: { value: 'mobile1', isRotated: false } },
   parameters: {
-    viewport: { defaultViewport: 'mobile1' },
-    chromatic: { viewports: [375] },
+    chromatic: { viewports: [320] },
   },
 };
