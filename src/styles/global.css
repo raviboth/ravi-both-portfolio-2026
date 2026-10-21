@@ -57,7 +57,7 @@ select {
   --color-text: #2d2d2d;
   --color-text-secondary: #555555;
   --color-footer-text: #aaaaaa;
-  --color-on-primary: #ffffff;
+  --color-on-primary-dark: #ffffff;
   --color-on-thumbnail: rgba(255, 255, 255, 0.7);
 
   /* Colors: tags, named by the surface they sit on */
