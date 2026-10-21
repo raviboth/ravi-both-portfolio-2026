@@ -10,11 +10,9 @@ const meta = {
   // The preview decorator sets data-theme from the toolbar. Start with nothing
   // stored, and clear what the toggle leaves behind.
   beforeEach: () => {
-    const root = document.documentElement;
     const previousStored = localStorage.getItem(THEME_STORAGE_KEY);
     localStorage.removeItem(THEME_STORAGE_KEY);
     return () => {
-      delete root.dataset.themeChosen;
       if (previousStored) localStorage.setItem(THEME_STORAGE_KEY, previousStored);
       else localStorage.removeItem(THEME_STORAGE_KEY);
     };
