@@ -23,9 +23,8 @@ const ogImage = `${siteUrl}/og-image.png`;
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content={THEME_COLORS.light} />
-    {/* Runs before first paint: a stored choice wins, else follow the OS setting */}
+    {/* Runs before first paint: a stored choice wins, else light */}
     <script is:inline define:vars={{ storageKey: THEME_STORAGE_KEY, colors: THEME_COLORS }}>
-      const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
       const stored = () => {
         try {
           const value = localStorage.getItem(storageKey);
@@ -38,12 +37,7 @@ const ogImage = `${siteUrl}/og-image.png`;
         document.documentElement.dataset.theme = theme;
         document.querySelector('meta[name="theme-color"]')?.setAttribute('content', colors[theme]);
       };
-      apply(stored() ?? (darkQuery.matches ? 'dark' : 'light'));
-      darkQuery.addEventListener('change', (e) => {
-        if (!stored() && !('themeChosen' in document.documentElement.dataset)) {
-          apply(e.matches ? 'dark' : 'light');
-        }
-      });
+      apply(stored() ?? 'light');
     </script>
     <link rel="canonical" href={siteUrl} />
 

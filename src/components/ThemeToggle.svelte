@@ -6,8 +6,8 @@
 
   onMount(() => {
     theme = currentTheme();
-    // The inline script in Layout.astro also switches theme when the OS setting
-    // changes, so follow the attribute instead of keeping a separate copy.
+    // Follow the attribute instead of keeping a separate copy, so outside
+    // changes (the Storybook theme toolbar) show up too.
     const observer = new MutationObserver(() => (theme = currentTheme()));
     observer.observe(document.documentElement, { attributeFilter: ['data-theme'] });
     return () => observer.disconnect();
